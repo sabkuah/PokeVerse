@@ -9,8 +9,6 @@ namespace PokeVerse.Models
     public class Pokedex : BaseEntity
     {
 
-       
-
 
     }
 }
