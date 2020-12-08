@@ -6,9 +6,9 @@ using System.Text;
 
 namespace PokeVerse.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class AuthDbContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public AuthDbContext(DbContextOptions<AuthDbContext> options)
             : base(options)
         {
         }
