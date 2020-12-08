@@ -14,7 +14,7 @@ namespace PokeVerse.Models
         public string Name { get; set; }
 
         //navigation properties 
-        public virtual PokemonType PokemonType { get; set; }
+        public virtual ICollection<PokemonType> PokemonTypes { get; set; }
 
         public Type(string name)
         {

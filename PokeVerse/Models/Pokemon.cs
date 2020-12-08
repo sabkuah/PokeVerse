@@ -14,7 +14,7 @@ namespace PokeVerse.Models
 
         public string Type1 { get; set; }
 
-        public int HP { get; set; }
+        //public int HP { get; set; }
 
         public int Attack { get; set; }
 
@@ -22,12 +22,14 @@ namespace PokeVerse.Models
 
         public int Speed { get; set; }
 
-        public Pokemon(string name, string type0, string type1, int hp, int attack, int defense, int speed)
+        public virtual ICollection<PokemonType> PokemonTypes { get; set; }
+
+        public Pokemon(string name, string type0, string type1, int attack, int defense, int speed)
         {
             Name = name;
             Type0 = type0;
             Type1 = type1;
-            HP = hp;
+            //HP = hitpoints;
             Attack = attack;
             Defense = defense;
             Speed = speed;
