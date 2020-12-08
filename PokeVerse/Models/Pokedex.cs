@@ -9,6 +9,14 @@ namespace PokeVerse.Models
     public class Pokedex : BaseEntity
     {
 
+        [ForeignKey("TrainerId")]
+        public int TrainerId { get; set; }
+
+
+        public Pokedex(int trainerId)
+        {
+            TrainerId = trainerId;
+        }
 
     }
 }
