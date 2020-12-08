@@ -7,11 +7,19 @@ namespace PokeVerse.Models
 {
     public class PokemonModel : BaseEntity
     {
-        public PokemonModel()
-        {
+  
+        public string Name { get; set; }
 
+        public string Type0 { get; set; }
 
+        public string Type1 { get; set; }
 
-        }
+        public int HP { get; set; }
+
+        public int Attack { get; set; }
+
+        public int Defense { get; set; }
+
+        public int Speed { get; set; }
     }
 }

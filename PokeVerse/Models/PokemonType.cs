@@ -5,7 +5,13 @@ using System.Threading.Tasks;
 
 namespace PokeVerse.Models
 {
-    public class PokemonType
+    public class PokemonModel : BaseEntity
     {
+        public PokemonModel()
+        {
+
+
+
+        }
     }
 }
