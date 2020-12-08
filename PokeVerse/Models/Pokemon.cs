@@ -22,7 +22,7 @@ namespace PokeVerse.Models
 
         public int Speed { get; set; }
 
-        public PokemonModel(string name, string type0, string type1, int hp, int attack, int defense, int speed)
+        public Pokemon(string name, string type0, string type1, int hp, int attack, int defense, int speed)
         {
             Name = name;
             Type0 = type0;
