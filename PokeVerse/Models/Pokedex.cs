@@ -13,6 +13,7 @@ namespace PokeVerse.Models
         public Pokedex(int trainerid)
         {
             TrainerId = trainerid; 
+
         }
 
     }
