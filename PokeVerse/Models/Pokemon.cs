@@ -21,5 +21,18 @@ namespace PokeVerse.Models
         public int Defense { get; set; }
 
         public int Speed { get; set; }
+
+        public PokemonModel(string name, string type0, string type1, int hp, int attack, int defense, int speed)
+        {
+            Name = name;
+            Type0 = type0;
+            Type1 = type1;
+            HP = hp;
+            Attack = attack;
+            Defense = defense;
+            Speed = speed;
+            
+        }
+
     }
 }
