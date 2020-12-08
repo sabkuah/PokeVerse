@@ -4,6 +4,10 @@
 
 This application is designed for users ("trainers") to be able to store their pokemon collections via a searchable and browsable database. In Version 1.0 we include the original 150 pokemon and the ability to save your collection and share it via social media. In later versions, we hope to implement trainer "levels" and a trading and game aspect
 
+## Installation Instructions
+
+Clone this repo.
+
 ## Functional Requirements
 
 ### Backend 
@@ -19,7 +23,8 @@ This application is designed for users ("trainers") to be able to store their po
 - User must be able to view catalogue of pokemon
 
 ## Non-functional Requirements
-
+- Usability: CRAP principles, documentation
+- Preformance: Let API handle rate limits
 
 ## Features
 
