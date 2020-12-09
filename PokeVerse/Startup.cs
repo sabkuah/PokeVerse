@@ -40,13 +40,15 @@ namespace PokeVerse
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<AuthDbContext>();
-            services.AddRazorPages();
+           
 
             services.AddRecaptcha(new RecaptchaOptions
             {
-                SiteKey = Configuration["RecaptchaV2:6Lf_6v8ZAAAAAEpFZ2VrPxaq5IP8W_VNFaPp0N_0"],
-                SecretKey = Configuration["RecaptchaV2:6Lf_6v8ZAAAAAAT-4auTGhKIwHWjjgJGa7QtKEF6"]
+                SiteKey = Configuration["RacaptchaV2:SiteKey"],
+                SecretKey = Configuration["RacaptchaV2:SecretKey"]
             });
+
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
