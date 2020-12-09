@@ -20,7 +20,7 @@ namespace PokeVerse.Data
 
         public DbSet<Pokedex> PokeDex { get; set; }
 
-        public DbSet<PokedexPokemon> PokedexPokemons { get; set; }
+        public DbSet<PokedexPokemon> PokedexPokemon { get; set; }
 
         public DbSet<Trainer> Trainer { get; set; }
 
@@ -61,7 +61,7 @@ namespace PokeVerse.Data
 
             modelBuilder.Entity<PokedexPokemon>()
                 .HasOne(pt => pt.Pokemon)
-                .WithMany(p => p.PokedexPokemons)
+                .WithMany(p => p.PokedexPokemon)
                 .HasForeignKey(fk => new { fk.PokemonId });
 
 

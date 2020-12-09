@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PokeVerse.Data;
 
 namespace PokeVerse.Data.PokeMigrations
 {
     [DbContext(typeof(PokeVerseDbContext))]
-    partial class PokeVerseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201209212215_InitialPokeVerseSchema")]
+    partial class InitialPokeVerseSchema
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
