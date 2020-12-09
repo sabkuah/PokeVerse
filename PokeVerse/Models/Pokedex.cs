@@ -10,11 +10,12 @@ namespace PokeVerse.Models
     {
         public virtual int TrainerId { get; private set; }
 
-        public Pokedex(int trainerid)
-        {
-            TrainerId = trainerid; 
+        //public Pokedex(int trainerid)
+        //{
+        //    TrainerId = trainerid; 
 
-        }
-
+        //}
+        public virtual ICollection<Pokedex> Pokedexs { get; set; }
+        public virtual ICollection<PokedexPokemon> PokedexPokemons { get; set; }
     }
 }
