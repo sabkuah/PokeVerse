@@ -49,7 +49,7 @@ namespace PokeVerse.Areas.Identity.Pages.Account
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
-        public string CaptchaSitekey { get; set; }
+        public string CaptchaSiteKey { get; set; }
 
         public class InputModel
         {
@@ -75,7 +75,7 @@ namespace PokeVerse.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            CaptchaSitekey = _configuration["RecaptchaV2:SiteKey"];
+            CaptchaSiteKey = _configuration["RecaptchaV2:SiteKey"];
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }

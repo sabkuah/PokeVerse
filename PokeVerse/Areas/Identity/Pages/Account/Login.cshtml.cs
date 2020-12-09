@@ -27,7 +27,7 @@ namespace PokeVerse.Areas.Identity.Pages.Account
 
         public LoginModel(SignInManager<IdentityUser> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<IdentityUser> userManager
+            UserManager<IdentityUser> userManager,
             IConfiguration configuration)
         {
             _userManager = userManager;
@@ -43,7 +43,7 @@ namespace PokeVerse.Areas.Identity.Pages.Account
 
         public string ReturnUrl { get; set; }
 
-        public string CaptchaSitekey { get; set; }
+        public string CaptchaSiteKey { get; set; }
 
         [TempData]
         public string ErrorMessage { get; set; }
@@ -69,7 +69,7 @@ namespace PokeVerse.Areas.Identity.Pages.Account
                 ModelState.AddModelError(string.Empty, ErrorMessage);
             }
 
-            CaptchaSitekey = _configuration["RecaptchaV2:SiteKey"];
+            CaptchaSiteKey = _configuration["RecaptchaV2:SiteKey"];
 
             returnUrl = returnUrl ?? Url.Content("~/");
 
