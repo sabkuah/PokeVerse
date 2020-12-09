@@ -14,7 +14,7 @@ namespace PokeVerse.Data
         {
         }
         
-        public DbSet<Pokemon> Pokemons { get; set; }
+        public DbSet<Pokemon> Pokemon { get; set; }
         public DbSet<PokemonType> PokemonTypes { get; set; }
         public DbSet<Models.Type> Types { get; set; }
 
