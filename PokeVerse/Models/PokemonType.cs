@@ -19,11 +19,7 @@ namespace PokeVerse.Models
         public virtual Pokemon Pokemon { get; set; }
         public virtual Type Type { get; set; }
 
-        public PokemonType(int pokemonid, int typeid)
-        {
-            PokemonId = pokemonid;
-            TypeId = typeid;
-        }
+        
 
     }
 }
