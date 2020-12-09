@@ -7,7 +7,8 @@ namespace PokeVerse.Models
 {
     public class Pokemon : BaseEntity
     {
-  
+
+        public int PokeNumber { get; set; }
         public string Name { get; set; }
 
         public string Type0 { get; set; }
@@ -25,12 +26,12 @@ namespace PokeVerse.Models
         public virtual ICollection<PokemonType> PokemonTypes { get; set; }
         public virtual ICollection<PokedexPokemon> PokedexPokemons { get; set; }
 
-        public Pokemon(string name, string type0, string type1, int attack, int defense, int speed)
+        public Pokemon(int pokeNumber,string name, string type0, string type1, int attack, int defense, int speed)
         {
+            PokeNumber = pokeNumber;
             Name = name;
             Type0 = type0;
             Type1 = type1;
-            //HP = hp;
             Attack = attack;
             Defense = defense;
             Speed = speed;
