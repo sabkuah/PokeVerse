@@ -13,6 +13,9 @@ namespace PokeVerse.Models
         [Column(TypeName = "nvarchar(20)")]
         public string Name { get; set; }
 
+        //navigation properties 
+        public virtual ICollection<PokemonType> PokemonTypes { get; set; }
+
         public Type(string name)
         {
             Name = name; 
