@@ -11,18 +11,18 @@
                         <i class="icon-map-marker icon-4x text-success"></i>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                        <h1 class="h3 font-weight-normal">Please sign in</h1>
                         <div asp-validation-summary="All" class="text-danger"></div>
                     </div>
-                    <div class="form-group ">
+                    <div class="form-group my-5 pt-3">
                         <input asp-for="Input.Email" class="form-control" placeholder="Email address*" required autofocus />
                         <span asp-validation-for="Input.Email" class="text-danger"></span>
                     </div>
-                    <div class="form-group ">
+                    <div class="form-group my-5">
                         <input asp-for="Input.Password" class="form-control" placeholder="Password*" required />
                         <span asp-validation-for="Input.Password" class="text-danger"></span>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group my-5">
                         <div class="checkbox">
                             <label asp-for="Input.RememberMe">
                                 <input asp-for="Input.RememberMe" />
@@ -30,7 +30,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-5 pt-5">
                         <button id="signinbtn" type="submit" class="btn btn-lg btn-block">Sign in</button>
                     </div>
                 </form>
@@ -38,7 +38,7 @@
 
             <div class="col">
                 <h1 class="text-center mt-5">PokeVerse</h1>
-                <img class="mt-5" style="height:65%; width:100%;" src="~/images/loginbg.png" />
+                <img class="mt-5" style="height:60%; width:100%;" src="~/images/loginbg.png" />
                 <div class="row justify-content-center">
                     <button id="signinbtn" type="submit" class="btn btn-lg mt-5">Register to Access Self Collection</button>
                 </div>
