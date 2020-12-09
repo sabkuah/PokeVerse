@@ -46,8 +46,8 @@ namespace PokeVerse
 
             services.AddRecaptcha(new RecaptchaOptions
             {
-                SiteKey = Configuration["RacaptchaV2:SiteKey"],
-                SecretKey = Configuration["RacaptchaV2:SecretKey"]
+                SiteKey = Configuration["RecaptchaV2:SiteKey"],
+                SecretKey = Configuration["RecaptchaV2:SecretKey"]
             });
 
             services.AddRazorPages();

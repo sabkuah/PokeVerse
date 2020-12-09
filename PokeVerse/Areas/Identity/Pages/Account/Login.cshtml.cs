@@ -69,7 +69,7 @@ namespace PokeVerse.Areas.Identity.Pages.Account
                 ModelState.AddModelError(string.Empty, ErrorMessage);
             }
 
-            CaptchaSiteKey = _configuration["RecaptchaV2:SiteKey"];
+            CaptchaSiteKey = _configuration["RecaptchaV2:SiteKey"]; ;
 
             returnUrl = returnUrl ?? Url.Content("~/");
 
@@ -77,6 +77,7 @@ namespace PokeVerse.Areas.Identity.Pages.Account
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
 
             ReturnUrl = returnUrl;
         }
