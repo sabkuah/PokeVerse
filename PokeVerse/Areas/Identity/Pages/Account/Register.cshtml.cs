@@ -43,6 +43,8 @@ namespace PokeVerse.Areas.Identity.Pages.Account
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
+        public string CaptchaSitekey { get; set; }
+
         public class InputModel
         {
             [Required]
