@@ -30,7 +30,7 @@ namespace PokeVerse
             //Adding AuthDbContext
             services.AddDbContext<AuthDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("AuthConnection")));
+                    Configuration.GetConnectionString("DefaultConnection")));
 
             //Adding PokeVerseDbContext
             services.AddDbContext<PokeVerseDbContext>(options =>
