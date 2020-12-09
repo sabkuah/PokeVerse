@@ -17,6 +17,7 @@ namespace PokeVerse.Models
         //    UserName = username;
         //    Email = email;
         //    DateJoined = dateJoined;
+
         //}
     }
 }
