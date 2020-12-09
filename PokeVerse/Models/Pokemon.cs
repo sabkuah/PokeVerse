@@ -29,7 +29,7 @@ namespace PokeVerse.Models
             Name = name;
             Type0 = type0;
             Type1 = type1;
-            //HP = hitpoints;
+            //HP = hp;
             Attack = attack;
             Defense = defense;
             Speed = speed;
