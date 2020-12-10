@@ -18,7 +18,7 @@ If the build fails, ensure that you have the PaulMiami Recaptcha V2 and bootstra
 - Authentication for user accounts
     - Recaptcha and/or two-factor
     - Email confirmation
-- PokemonAPI populated database
+- Seed populated database
 
 ### Frontend
 - Pages/Views: See moqup
@@ -28,7 +28,7 @@ If the build fails, ensure that you have the PaulMiami Recaptcha V2 and bootstra
 
 ## Non-functional Requirements
 - Usability: CRAP principles, documentation
-- Preformance: Let API handle rate limits
+- Preformance: Implement rate limits if preformance becomes an issue
 
 ## Features
 
