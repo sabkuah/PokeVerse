@@ -28,6 +28,7 @@ namespace PokeVerse.Models
 
 
         public Pokemon(int pokeNumber, string name, string type0, string type1, int attack, int defense, int speed)
+
         {
             PokeNumber = pokeNumber;
             Name = name;
