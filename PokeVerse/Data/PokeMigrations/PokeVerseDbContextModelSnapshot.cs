@@ -70,6 +70,9 @@ namespace PokeVerse.Data.PokeMigrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("PokeNumber")
+                        .HasColumnType("int");
+
                     b.Property<int>("Speed")
                         .HasColumnType("int");
 
@@ -81,7 +84,7 @@ namespace PokeVerse.Data.PokeMigrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Pokemons");
+                    b.ToTable("Pokemon");
                 });
 
             modelBuilder.Entity("PokeVerse.Models.PokemonType", b =>
