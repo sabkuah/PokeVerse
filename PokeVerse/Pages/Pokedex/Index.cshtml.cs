@@ -9,6 +9,11 @@ namespace PokeVerse.Pages.Pokedex
 {
     public class IndexModel : PageModel
     {
+
+
+
+
+
         public void OnGet()
         {
         }

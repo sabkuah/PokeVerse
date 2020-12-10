@@ -1,4 +1,30 @@
 ﻿@page
-@model PokeVerse.Pages.Pokedex._PokedexPartialModel
+@model PokeVerse.Models.PokedexPokemon
 @{
 }
+
+<tr>
+    <th>
+        @Model.Pokemon.PokeNumber
+    </th>
+    <th>
+        @Model.Pokemon.Name
+    </th>
+    <th>
+        @Model.Pokemon.Type0
+    </th>
+    <th>
+        @Model.Pokemon.Type1
+    </th>
+    <th>
+        @Model.Pokemon.Speed
+    </th>
+    <th>
+        @Model.Pokemon.Attack
+    </th>
+    <th>
+        @Model.Pokemon.Defense
+    </th>
+    
+</tr>
+
