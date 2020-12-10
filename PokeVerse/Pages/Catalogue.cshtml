@@ -27,7 +27,7 @@
         </div>*@
 
         <div class="app-product-items row">
-            @foreach (var item in Model.PokemonVM)
+            @foreach (var item in Model.PokemonIndex.Pokemons)
             {
                 string imageUrl = "./images/" + item.PokeNumber.ToString("D3") + ".png";
                 <form asp-page="" method="post">
