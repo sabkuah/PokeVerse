@@ -42,7 +42,10 @@ namespace PokeVerse.Pages.Pokedex
                 .Where(p=> p.Id == (int)HttpContext.Session.GetInt32("Id") )
             .FirstOrDefault();
 
+            PokemonList = Pokedex.PokedexPokemons;
 
+            _db.PokeDex.Update(Pokedex);
+            _db.SaveChanges();
 
         }
     }
