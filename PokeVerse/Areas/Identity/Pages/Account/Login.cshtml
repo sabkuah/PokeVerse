@@ -30,6 +30,8 @@
                             </label>
                         </div>
                     </div>
+                    <div id="ReCaptchaV2Container"></div><br />
+                    <label id="lblCaptchaMessage"></label><br />
                     <div class="form-group mt-5 pt-5">
                         <button id="signinbtn" type="submit" class="btn btn-lg btn-block">Sign in</button>
                     </div>
@@ -59,4 +61,45 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script src="https://kit.fontawesome.com/485afd012e.js" crossorigin="anonymous"></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=renderRecaptcha&render=explicit" async defer></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <script type="text/javascript">
+    // Style and draw reCAPTCHA.
+    var renderRecaptcha = function () {
+        grecaptcha.render('ReCaptchaV2Container', {
+            'sitekey':  '@Model.CaptchaSiteKey',
+            'callback': reCaptchaCallback,
+            theme:      'light',    //light or dark
+            type:       'image',    // image or audio
+            size:       'normal'    //normal or compact
+        });
+    };
+
+    var reCaptchaCallback = function (response) {
+        // If reCAPTCHA is successful display it.
+        if (response !== '') {
+            jQuery('#lblCaptchaMessage').css('color', 'green').html('Success');
+            $(':input[type="submit"]').prop('disabled', false);
+        }
+    };
+
+    // Check reCAPTCHA validation.
+    jQuery('button[type="button"]').click(function (e) {
+        var message = 'Please check the checkbox';
+        if (typeof (grecaptcha) != 'undefined') {
+            var response = grecaptcha.getResponse();
+            (response.length === 0) ? (message = 'Captcha verification failed')
+                                    : (message = 'Success!');
+        }
+        jQuery('#lblCaptchaMessage').html(message);
+        jQuery('#lblCaptchaMessage').css('color',
+                              (message.toLowerCase() == 'success!') ? "green" : "red");
+    });
+
+    // Disable button when form loads.
+    $(document).ready(function () {
+        $(':input[type="submit"]').prop('disabled', true);
+    });
+    </script>
 }

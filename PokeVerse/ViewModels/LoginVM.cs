@@ -8,6 +8,7 @@ namespace PokeVerse.ViewModels
 {
     public class LoginVM
     {
+
         [Required]
         [EmailAddress]
         public string Email { get; set; }

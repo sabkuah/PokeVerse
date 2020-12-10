@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PokeVerse.Data;
+using PaulMiami.AspNetCore.Mvc.Recaptcha;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,8 +38,18 @@ namespace PokeVerse
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<IdentityUser>(options => { options.SignIn.RequireConfirmedAccount = true;
+                options.SignIn.RequireConfirmedEmail = true;
+            })
                 .AddEntityFrameworkStores<AuthDbContext>();
+           
+
+            services.AddRecaptcha(new RecaptchaOptions
+            {
+                SiteKey = Configuration["RecaptchaV2:SiteKey"],
+                SecretKey = Configuration["RecaptchaV2:SecretKey"]
+            });
+
             services.AddRazorPages();
         }
 
