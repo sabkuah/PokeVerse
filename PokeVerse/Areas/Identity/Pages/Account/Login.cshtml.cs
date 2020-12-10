@@ -11,23 +11,29 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using PaulMiami.AspNetCore.Mvc.Recaptcha;
+using Microsoft.Extensions.Configuration;
 
 namespace PokeVerse.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
+    [ValidateRecaptcha]
     public class LoginModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly IConfiguration _configuration;
 
         public LoginModel(SignInManager<IdentityUser> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<IdentityUser> userManager)
+            UserManager<IdentityUser> userManager,
+            IConfiguration configuration)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _configuration = configuration;
         }
 
         [BindProperty]
@@ -36,6 +42,8 @@ namespace PokeVerse.Areas.Identity.Pages.Account
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
         public string ReturnUrl { get; set; }
+
+        public string CaptchaSiteKey { get; set; }
 
         [TempData]
         public string ErrorMessage { get; set; }
@@ -61,6 +69,8 @@ namespace PokeVerse.Areas.Identity.Pages.Account
                 ModelState.AddModelError(string.Empty, ErrorMessage);
             }
 
+            CaptchaSiteKey = _configuration["RecaptchaV2:SiteKey"]; 
+
             returnUrl = returnUrl ?? Url.Content("~/");
 
             // Clear the existing external cookie to ensure a clean login process
@@ -68,11 +78,13 @@ namespace PokeVerse.Areas.Identity.Pages.Account
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
+
             ReturnUrl = returnUrl;
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+            CaptchaSiteKey = _configuration["RecaptchaV2:SiteKey"];
             returnUrl = returnUrl ?? Url.Content("~/");
 
             if (ModelState.IsValid)

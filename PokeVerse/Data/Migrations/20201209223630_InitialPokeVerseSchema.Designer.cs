@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PokeVerse.Data;
 
-namespace PokeVerse.Data.PokeMigrations
+namespace PokeVerse.Data.Migrations
 {
     [DbContext(typeof(PokeVerseDbContext))]
-    [Migration("20201209212215_InitialPokeVerseSchema")]
+    [Migration("20201209223630_InitialPokeVerseSchema")]
     partial class InitialPokeVerseSchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,7 +53,7 @@ namespace PokeVerse.Data.PokeMigrations
 
                     b.HasIndex("PokemonId");
 
-                    b.ToTable("PokedexPokemons");
+                    b.ToTable("PokedexPokemon");
                 });
 
             modelBuilder.Entity("PokeVerse.Models.Pokemon", b =>
@@ -157,7 +157,7 @@ namespace PokeVerse.Data.PokeMigrations
                         .IsRequired();
 
                     b.HasOne("PokeVerse.Models.Pokemon", "Pokemon")
-                        .WithMany("PokedexPokemons")
+                        .WithMany("PokedexPokemon")
                         .HasForeignKey("PokemonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

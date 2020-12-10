@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace PokeVerse.Data.PokeMigrations
+namespace PokeVerse.Data.Migrations
 {
     public partial class InitialPokeVerseSchema : Migration
     {
@@ -75,7 +75,7 @@ namespace PokeVerse.Data.PokeMigrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PokedexPokemons",
+                name: "PokedexPokemon",
                 columns: table => new
                 {
                     PokedexId = table.Column<int>(nullable: false),
@@ -83,15 +83,15 @@ namespace PokeVerse.Data.PokeMigrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PokedexPokemons", x => new { x.PokedexId, x.PokemonId });
+                    table.PrimaryKey("PK_PokedexPokemon", x => new { x.PokedexId, x.PokemonId });
                     table.ForeignKey(
-                        name: "FK_PokedexPokemons_PokeDex_PokedexId",
+                        name: "FK_PokedexPokemon_PokeDex_PokedexId",
                         column: x => x.PokedexId,
                         principalTable: "PokeDex",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PokedexPokemons_Pokemon_PokemonId",
+                        name: "FK_PokedexPokemon_Pokemon_PokemonId",
                         column: x => x.PokemonId,
                         principalTable: "Pokemon",
                         principalColumn: "Id",
@@ -128,8 +128,8 @@ namespace PokeVerse.Data.PokeMigrations
                 column: "PokedexId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PokedexPokemons_PokemonId",
-                table: "PokedexPokemons",
+                name: "IX_PokedexPokemon_PokemonId",
+                table: "PokedexPokemon",
                 column: "PokemonId");
 
             migrationBuilder.CreateIndex(
@@ -141,7 +141,7 @@ namespace PokeVerse.Data.PokeMigrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "PokedexPokemons");
+                name: "PokedexPokemon");
 
             migrationBuilder.DropTable(
                 name: "PokemonTypes");
