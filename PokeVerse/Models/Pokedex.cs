@@ -12,7 +12,7 @@ namespace PokeVerse.Models
 
         //public Pokedex(int trainerid)
         //{
-        //    TrainerId = trainerid; 
+        //    TrainerId = trainerid;
 
         //}
         public virtual ICollection<Pokedex> Pokedexs { get; set; }
