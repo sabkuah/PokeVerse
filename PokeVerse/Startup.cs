@@ -13,6 +13,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PokeVerse.Interfaces;
+using PokeVerse.Services;
+using PokeVerse.Data.Migrations;
 
 namespace PokeVerse
 {
@@ -50,6 +53,9 @@ namespace PokeVerse
                 SiteKey = Configuration["RecaptchaV2:SiteKey"],
                 SecretKey = Configuration["RecaptchaV2:SecretKey"]
             });
+
+            services.AddScoped<IPokemonVMService, PokemonVMService>();
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 
             services.AddRazorPages();
         }
