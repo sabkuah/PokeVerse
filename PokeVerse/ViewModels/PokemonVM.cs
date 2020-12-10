@@ -22,5 +22,7 @@ namespace PokeVerse.ViewModels
 
         public int Speed { get; set; }
 
+        public string ImageUrl { get; set; }
+
     }
 }
