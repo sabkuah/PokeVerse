@@ -13,8 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Data\Migrations\20201209223630_InitialPokeVerseSchema.cs" />
-    <Compile Include="Data\Migrations\20201209223630_InitialPokeVerseSchema.Designer.cs" />
     <Compile Include="Data\Migrations\PokeVerseDbContextModelSnapshot.cs" />
   </ItemGroup>
 
@@ -30,6 +28,10 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
     <PackageReference Include="PaulMiami.AspNetCore.Mvc.Recaptcha" Version="1.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\Shared\Components\" />
   </ItemGroup>
 
 </Project>

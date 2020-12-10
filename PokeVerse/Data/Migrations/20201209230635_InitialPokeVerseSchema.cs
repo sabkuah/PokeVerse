@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace PokeVerse.Data.Migrations
+namespace PokeVerse.Data.PokeMigrations
 {
     public partial class InitialPokeVerseSchema : Migration
     {
