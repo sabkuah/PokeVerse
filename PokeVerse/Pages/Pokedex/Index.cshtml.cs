@@ -26,7 +26,7 @@ namespace PokeVerse.Pages.Pokedex
         }
 
 
-        public Models.Pokedex Pokedex { get; set; }
+        public Models.Pokedex Pokedexs { get; set; }
 
         public ICollection<PokedexPokemon> PokemonList { get; private set; }
 
@@ -34,38 +34,39 @@ namespace PokeVerse.Pages.Pokedex
 
 
         public void OnGet()
+        
         {
             System.Threading.Thread.Sleep(2000);
 
-            Pokedex = _db.PokeDex
-                .Include(p => p.PokedexPokemons)
-                .ThenInclude(pp => pp.Pokemon)
-                .Where(p=> p.Id == (int)HttpContext.Session.GetInt32("Id") )
+            Pokedexs = _db.PokeDex
+                .Include(pp => pp.PokedexPokemons)
+                .ThenInclude(p => p.Pokemon)
+                .Where(pp => pp.Id == (int)HttpContext.Session.GetInt32("Id"))
             .FirstOrDefault();
 
-            PokemonList = Pokedex.PokedexPokemons;
+            PokemonList = Pokedexs.PokedexPokemons;
 
-            _db.PokeDex.Update(Pokedex);
+            _db.PokeDex.Update(Pokedexs);
             _db.SaveChanges();
 
         }
 
-        public IActionResult OnPost(PokemonVM testPokemon)
-        {
+        //public IActionResult OnPost(PokemonVM testPokemon)
+        //{
 
-            if(testPokemon?.PokeNumber == null)
-            {
-                return RedirectToPage("/Catologue");
-            }
+        //    if(testPokemon?.PokeNumber == null)
+        //    {
+        //        return RedirectToPage("/Catologue");
+        //    }
 
-            int? pokedexId = HttpContext.Session.GetInt32("PokedexId");
-            bool isUser = User.Identity.IsAuthenticated;
-            string trainerId = null;
+        //    int? pokedexId = HttpContext.Session.GetInt32("PokedexId");
+        //    bool isUser = User.Identity.IsAuthenticated;
+        //    string trainerId = null;
 
-            if (isUser) 
-            {
-                trainerId = _userManager.FindByNameAsync(User.Identity.Name).Result.Id;
-            }
+        //    if (isUser) 
+        //    {
+        //        trainerId = _userManager.FindByNameAsync(User.Identity.Name).Result.Id;
+        //    }
 
 
             Models.Pokedex pokedex;
@@ -87,20 +88,20 @@ namespace PokeVerse.Pages.Pokedex
 
             //}
 
-            int PokedexId = Pokedex.Id;
-            PokedexPokemon pp;
+        //    int PokedexId = Pokedexs.Id;
+        //    PokedexPokemon pp;
 
-            pp = _db.PokedexPokemon
-                .Where(pp => pp.Pokedex.Id == pokedexId && pp.Pokemon.PokeNumber == testPokemon.PokeNumber).FirstOrDefault();
+        //    pp = _db.PokedexPokemon
+        //        .Where(pp => pp.Pokedex.Id == pokedexId && pp.Pokemon.PokeNumber == testPokemon.PokeNumber).FirstOrDefault();
 
             
 
-            _db.SaveChanges();
+        //    _db.SaveChanges();
 
-            HttpContext.Session.SetInt32("pokedexId", (int)pokedexId);
+        //    HttpContext.Session.SetInt32("pokedexId", (int)pokedexId);
 
-            return RedirectToPage();
-        }
+        //    return RedirectToPage();
+        //}
 
 
     }
