@@ -13,8 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Data\Migrations\20201209223630_InitialPokeVerseSchema.cs" />
-    <Compile Include="Data\Migrations\20201209223630_InitialPokeVerseSchema.Designer.cs" />
     <Compile Include="Data\Migrations\PokeVerseDbContextModelSnapshot.cs" />
   </ItemGroup>
 
