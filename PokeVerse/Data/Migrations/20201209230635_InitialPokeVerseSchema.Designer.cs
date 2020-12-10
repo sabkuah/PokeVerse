@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PokeVerse.Data;
 
-namespace PokeVerse.Data.Migrations
+namespace PokeVerse.Data.PokeMigrations
 {
     [DbContext(typeof(PokeVerseDbContext))]
-    [Migration("20201209223630_InitialPokeVerseSchema")]
+    [Migration("20201209230635_InitialPokeVerseSchema")]
     partial class InitialPokeVerseSchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
