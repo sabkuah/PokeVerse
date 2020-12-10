@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using PokeVerse.Data;
 using PokeVerse.Models;
+using PokeVerse.ViewModels;
 
 namespace PokeVerse.Pages.Pokedex
 {
@@ -48,5 +49,59 @@ namespace PokeVerse.Pages.Pokedex
             _db.SaveChanges();
 
         }
+
+        public IActionResult OnPost(PokemonVM testPokemon)
+        {
+
+            if(testPokemon?.PokeNumber == null)
+            {
+                return RedirectToPage("/Catologue");
+            }
+
+            int? pokedexId = HttpContext.Session.GetInt32("PokedexId");
+            bool isUser = User.Identity.IsAuthenticated;
+            string trainerId = null;
+
+            if (isUser) 
+            {
+                trainerId = _userManager.FindByNameAsync(User.Identity.Name).Result.Id;
+            }
+
+
+            Models.Pokedex pokedex;
+
+            //if (pokedexId == null)
+            //{
+            //    pokedex = new Models.Pokedex(Int32.Parse(trainerId));
+            //    _db.PokeDex.Add(pokedex);
+            //    _db.SaveChanges();
+            //    pokedexId = pokedex.Id;
+            //}
+            //else if (pokedexId != null)
+            //{
+            //    Pokedex = _db.PokeDex
+            //    .Include(p => p.PokedexPokemons)
+            //    .ThenInclude(pp => pp.Pokemon)
+            //    .Where(p => p.Id == (int)HttpContext.Session.GetInt32("Id"))
+            //.FirstOrDefault();
+
+            //}
+
+            int PokedexId = Pokedex.Id;
+            PokedexPokemon pp;
+
+            pp = _db.PokedexPokemon
+                .Where(pp => pp.Pokedex.Id == pokedexId && pp.Pokemon.PokeNumber == testPokemon.PokeNumber).FirstOrDefault();
+
+            
+
+            _db.SaveChanges();
+
+            HttpContext.Session.SetInt32("pokedexId", (int)pokedexId);
+
+            return RedirectToPage();
+        }
+
+
     }
 }
