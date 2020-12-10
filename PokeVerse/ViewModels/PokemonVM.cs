@@ -21,5 +21,6 @@ namespace PokeVerse.ViewModels
         public int Defense { get; set; }
 
         public int Speed { get; set; }
+
     }
 }
