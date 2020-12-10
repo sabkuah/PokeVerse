@@ -24,7 +24,8 @@ namespace PokeVerse.Models
         public int Speed { get; set; }
 
         public virtual ICollection<PokemonType> PokemonTypes { get; set; }
-        public virtual ICollection<PokedexPokemon> PokedexPokemons { get; set; }
+        public virtual ICollection<PokedexPokemon> PokedexPokemon { get; set; }
+
 
         public Pokemon(int pokeNumber, string name, string type0, string type1, int attack, int defense, int speed)
         {
