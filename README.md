@@ -6,7 +6,11 @@ This application is designed for users ("trainers") to be able to store their po
 
 ## Installation Instructions
 
-Clone this repo.
+Clone this repo locally. Copy the appsettingsTEMPLATE.json to a file called appsettings.json. Update your connection string to point to your database. Register your site with google here [here](https://https://www.google.com/recaptcha/) to add authentication. Add your site and secret keys to your appsettings.json. Run`Add-Migration InitialPokeVerseSchema -Context PokeVerseDbContext -OutputDir "Data/PokeMigrations"` and then run `Update-Database`. Build your project and launch.  
+
+### Trouble Shooting
+
+If the build fails, ensure that you have the PaulMiami Recaptcha V2 and bootstrap packages installed. 
 
 ## Functional Requirements
 
@@ -14,7 +18,7 @@ Clone this repo.
 - Authentication for user accounts
     - Recaptcha and/or two-factor
     - Email confirmation
-- PokemonAPI populated database
+- Seed populated database
 
 ### Frontend
 - Pages/Views: See moqup
@@ -24,7 +28,7 @@ Clone this repo.
 
 ## Non-functional Requirements
 - Usability: CRAP principles, documentation
-- Preformance: Let API handle rate limits
+- Preformance: Implement rate limits if preformance becomes an issue
 
 ## Features
 
