@@ -34,5 +34,10 @@ namespace PokeVerse.Pages
                 Speed = p.Speed,
             }).ToListAsync();
         }
+
+        public IActionResult OnPost(PokemonVM pokemonAdded)
+        {
+            return RedirectToPage();
+        }
     }
 }
