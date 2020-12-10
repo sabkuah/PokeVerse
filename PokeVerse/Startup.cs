@@ -42,7 +42,8 @@ namespace PokeVerse
                 options.SignIn.RequireConfirmedEmail = true;
             })
                 .AddEntityFrameworkStores<AuthDbContext>();
-           
+
+            
 
             services.AddRecaptcha(new RecaptchaOptions
             {

@@ -69,7 +69,7 @@ namespace PokeVerse.Areas.Identity.Pages.Account
                 ModelState.AddModelError(string.Empty, ErrorMessage);
             }
 
-            CaptchaSiteKey = _configuration["RecaptchaV2:SiteKey"]; ;
+            CaptchaSiteKey = _configuration["RecaptchaV2:SiteKey"]; 
 
             returnUrl = returnUrl ?? Url.Content("~/");
 
@@ -84,6 +84,7 @@ namespace PokeVerse.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+            CaptchaSiteKey = _configuration["RecaptchaV2:SiteKey"];
             returnUrl = returnUrl ?? Url.Content("~/");
 
             if (ModelState.IsValid)
