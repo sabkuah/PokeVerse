@@ -10,6 +10,6 @@ namespace PokeVerse.ViewModels
     {
         public List<PokemonVM> Pokemons { get; set; }
         public List<SelectListItem> Types { get; set; }
-        public int? TypesFilterApplied { get; set; }
+        public string TypesFilterApplied { get; set; }
     }
 }

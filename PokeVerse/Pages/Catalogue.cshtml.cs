@@ -6,38 +6,50 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using PokeVerse.Interfaces;
 using PokeVerse.Models;
 using PokeVerse.ViewModels;
 
 namespace PokeVerse.Pages
 {
-    public class _CatalogueModel : PageModel
+    public class CatalogueModel : PageModel
     {
-        private readonly PokeVerse.Data.PokeVerseDbContext _context;
+        private readonly IPokemonVMService _pokemonVMService;
 
-        public _CatalogueModel(PokeVerse.Data.PokeVerseDbContext context)
+        public CatalogueModel(IPokemonVMService pokemonVMService)
         {
-            _context = context;
-        }
-        public List<PokemonVM> PokemonVM = new List<PokemonVM>();
-
-        public async Task OnGetAsync()
-        {
-            PokemonVM = await _context.Pokemon.Select(p => new PokemonVM
-            {
-                PokeNumber = p.PokeNumber,
-                Name = p.Name,
-                Type0 = p.Type0,
-                Type1 = p.Type1,
-                Attack = p.Attack,
-                Defense = p.Defense,
-                Speed = p.Speed,
-            }).ToListAsync();
+            _pokemonVMService = pokemonVMService;
         }
 
-        public IActionResult OnPost(PokemonVM pokemonAdded)
+        //private readonly PokeVerse.Data.PokeVerseDbContext _context;
+
+        //public _CatalogueModel(PokeVerse.Data.PokeVerseDbContext context)
+        //{
+        //    _context = context;
+        //}
+
+        public PokemonIndexVM PokemonIndex = new PokemonIndexVM();
+
+        //public List<PokemonVM> PokemonVM = new List<PokemonVM>();
+
+        public async Task OnGet(PokemonIndexVM pokemonIndex)
         {
-            return RedirectToPage();
+            PokemonIndex = _pokemonVMService.GetPokemonsVM(pokemonIndex.TypesFilterApplied);
+
         }
+
+        //public async Task OnGetAsync()
+        //{
+        //    PokemonVM = await _context.Pokemon.Select(p => new PokemonVM
+        //    {
+        //        PokeNumber = p.PokeNumber,
+        //        Name = p.Name,
+        //        Type0 = p.Type0,
+        //        Type1 = p.Type1,
+        //        Attack = p.Attack,
+        //        Defense = p.Defense,
+        //        Speed = p.Speed,
+        //    }).ToListAsync();
+        //}
     }
 }
