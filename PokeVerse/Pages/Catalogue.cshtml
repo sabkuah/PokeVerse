@@ -15,52 +15,53 @@
             </form>
         </div>
 
-            <div class="app-product-items row">
-                @foreach (var item in Model.PokemonIndex.Pokemons)
-                {
-                    item.ImageUrl = "./images/" + item.PokeNumber.ToString("D3") + ".png";
+        <div class="app-product-items row">
+            @foreach (var item in Model.PokemonIndex.Pokemons)
+            {
+                item.ImageUrl = "./images/" + item.PokeNumber.ToString("D3") + ".png";
 
-                    <form asp-page="/Pokedex/Index" method="post">
-                        <div class="app-product-item col-lg-4 py-1">
-                            <div class="card" style="width: 20rem;">
-                                <img src=@item.ImageUrl class="card-img-top" alt="@item.Name">
-                                <div class="card-body">
-                                    <h5 class="card-title" style="text-align: center">@item.PokeNumber</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted" style="text-align: center">@item.Name</h6>
-                                    <p class="card-text" style="text-align: center">@item.Type0 @item.Type1</p>
-                                    <a href="#" class="btn btn-block" style="background-color: lightyellow">See Details</a>
-                                </div>
+                <form asp-page="/Pokedex/Index" method="post">
+                    <div class="app-product-item col-lg-4 py-1">
+                        <div class="card" style="width: 20rem;">
+                            <img src=@item.ImageUrl class="card-img-top" alt="@item.Name">
+                            <div class="card-body">
+                                <h5 class="card-title" style="text-align: center">@item.PokeNumber</h5>
+                                <h6 class="card-subtitle mb-2 text-muted" style="text-align: center">@item.Name</h6>
+                                <p class="card-text" style="text-align: center">@item.Type0 @item.Type1</p>
+                                <a href="#" class="btn btn-block" style="background-color: lightyellow">See Details</a>
                             </div>
                         </div>
-                        <input type="hidden" asp-for="@item.PokeNumber" name="pokenumber" />
-                        <input type="hidden" asp-for="@item.Name" name="name" />
-                        <input type="hidden" asp-for="@item.Type0" name="type0" />
-                        <input type="hidden" asp-for="@item.Type1" name="type1" />
-                        <input type="hidden" asp-for="@item.ImageUrl" name="imageUrl" />
-                    </form>
-                }
-            </div>
+                    </div>
+                    <input type="hidden" asp-for="@item.PokeNumber" name="pokenumber" />
+                    <input type="hidden" asp-for="@item.Name" name="name" />
+                    <input type="hidden" asp-for="@item.Type0" name="type0" />
+                    <input type="hidden" asp-for="@item.Type1" name="type1" />
+                    <input type="hidden" asp-for="@item.ImageUrl" name="imageUrl" />
+                </form>
+            }
         </div>
+    </div>
+
     <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            @for (var i = 1; i <= Model.TotalPages; i++)
-            {
-                <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
-                    <a asp-page="/Catalogue" asp-route-currentpage="@i" class="page-link">@i</a>
-                </li>
-            }
-            @if (Model.ShowPrevious)
-            {
-                <li class="page-item">
-                    <a asp-page="/Catalogue" asp-route-currentpage="@(Model.CurrentPage - 1)" class="page-link">Previous</a>
-                </li>
-            }
-            @if (Model.ShowNext)
-            {
-                <li class="page-item">
-                    <a asp-page="/Catalogue" asp-route-currentpage="@(Model.CurrentPage + 1)" class="page-link">Next</a>
-                </li>
-            }
-        </ul>
-    </nav>
+            <ul class="pagination">
+                @for (var i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                        <a asp-page="/Catalogue" asp-route-currentpage="@i" class="page-link">@i</a>
+                    </li>
+                }
+                @if (Model.ShowPrevious)
+                {
+                    <li class="page-item">
+                        <a asp-page="/Catalogue" asp-route-currentpage="@(Model.CurrentPage - 1)" class="page-link">Previous</a>
+                    </li>
+                }
+                @if (Model.ShowNext)
+                {
+                    <li class="page-item">
+                        <a asp-page="/Catalogue" asp-route-currentpage="@(Model.CurrentPage + 1)" class="page-link">Next</a>
+                    </li>
+                }
+            </ul>
+        </nav>
 </body>

@@ -21,6 +21,7 @@ namespace PokeVerse.Services
             _pokemonRepo = productRepo;
             _typeRepo = typeRepo;
         }
+      
         public PokemonIndexVM GetPokemonsVM(string typeName, int currentPage, int pageSize)
         {
             IQueryable<Pokemon> pokemons = _pokemonRepo.GetAll().OrderBy(Pokemon => Pokemon.PokeNumber);
@@ -39,7 +40,7 @@ namespace PokeVerse.Services
                     Attack = p.Attack,
                     Defense = p.Defense,
                     Speed = p.Speed,
-                }).ToList(),
+                }).Skip((currentPage - 1) * pageSize).Take(pageSize).ToList(),
                 Types = GetTypes().ToList()
             };
             return vm;

@@ -23,9 +23,9 @@ namespace PokeVerse.Pages
 
         [BindProperty(SupportsGet = true)]
         public int CurrentPage { get; set; } = 1;
-        public int Count { get; set; }
+
+        public int Count { get; set; } = 150;
         public int PageSize { get; set; } = 12;
-        public List<Pokemon> Pokemons { get; set; }
 
         public int TotalPages => (int)Math.Ceiling(decimal.Divide(Count, PageSize));
 
@@ -34,8 +34,7 @@ namespace PokeVerse.Pages
 
 
         public PokemonIndexVM PokemonIndex = new PokemonIndexVM();
-      
-
+       
         public async Task OnGet(PokemonIndexVM pokemonIndex)
         {
             PokemonIndex = _pokemonVMService.GetPokemonsVM(pokemonIndex.TypesFilterApplied, CurrentPage, PageSize);
