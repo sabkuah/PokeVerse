@@ -7,6 +7,7 @@ namespace PokeVerse.ViewModels
 {
     public class PokemonVM
     {
+        public int Id { get; set; }
         public int PokeNumber { get; set; }
         public string Name { get; set; }
 

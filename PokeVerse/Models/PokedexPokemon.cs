@@ -17,12 +17,12 @@ namespace PokeVerse.Models
 
 
         public virtual Pokedex Pokedex { get; set; }
-        public virtual Pokemon Pokemon{ get; set; }
+        public virtual Pokemon Pokemon { get; set; }
 
-        public PokedexPokemon (int pokedexid, int pokemonid)
+        public PokedexPokemon (int pokedexId, int pokemonId)
         {
-            PokedexId = pokedexid;
-            PokemonId = pokemonid;
+            PokedexId = pokedexId;
+            PokemonId = pokemonId;
         }
 
     }

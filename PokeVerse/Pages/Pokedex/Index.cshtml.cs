@@ -27,12 +27,12 @@ namespace PokeVerse.Pages.Pokedex
         public Models.Pokedex TrainerPokedex { get; set; }
         public ICollection<PokedexPokemon> PokemonList { get; private set; }
 
-        public IActionResult OnGet(Pokemon addPokemon)
+        public IActionResult OnGet(PokemonVM addPokemon)
         {
             System.Threading.Thread.Sleep(2000);
 
             //If no new pokemon is being added, redirect to pokedex without accessing database
-            if (addPokemon?.Name == null)
+            if (addPokemon?.Id == null)
             {
                 return RedirectToPage("/Pokedex");
             }
