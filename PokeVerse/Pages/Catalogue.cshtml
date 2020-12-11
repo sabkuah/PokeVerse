@@ -3,9 +3,13 @@
 
 
 <body style="background-color: rgb(249,243,202)">
+    @* delete this button later *@
+    <a class="nav-link text-dark" asp-area="" asp-page="/Pokedex/Index">Quick Link to Pokedex</a>
+
+
     <div class="container">
         <div class="row">
-            <form method="get">
+            <form method="post">
                 <label class="app-product-label" data-title="type">
                     <select asp-for="@Model.PokemonIndex.TypesFilterApplied" asp-items="@Model.PokemonIndex.Types" class="app-product-filter"></select>
                 </label>
@@ -16,15 +20,6 @@
                 </button>
             </form>
         </div>
-
-        @*<div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: lightyellow; color:black">
-                Dropdown button
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">types</a>
-            </div>
-        </div>*@
 
         <div class="app-product-items row">
             @foreach (var item in Model.PokemonIndex.Pokemons)
@@ -39,15 +34,20 @@
                             <h5 class="card-title" style="text-align: center">@item.PokeNumber</h5>
                             <h6 class="card-subtitle mb-2 text-muted" style="text-align: center">@item.Name</h6>
                             <p class="card-text" style="text-align: center">@item.Type0 @item.Type1</p>
-                            <a href="#" class="btn btn-block" style="background-color: lightyellow">See Details</a>
+                            @*<a href="#" class="btn btn-block" style="background-color: lightyellow">See Details</a>*@
+                            <input class="app-product-addcart-button" type="submit" value="[ Add To Pokedex ]" asp-page="/Pokedex/Index" />
                         </div>
                     </div>
                 </div>
-                <input type="hidden" asp-for="@item.PokeNumber" name="pokenumber" />
-                <input type="hidden" asp-for="@item.Name" name="pokenumber" />
-                <input type="hidden" asp-for="@item.Type0" name="pokenumber" />
-                <input type="hidden" asp-for="@item.Type1" name="pokenumber" />
-                <input type="hidden" asp-for="@item.ImageUrl" name="pokenumber" />
+                <input type="hidden" asp-for="@item.Id" name="id" />
+                <input type="hidden" asp-for="@item.PokeNumber" name="pokeNumber" />
+                <input type="hidden" asp-for="@item.Name" name="name" />
+                <input type="hidden" asp-for="@item.Type0" name="type0" />
+                <input type="hidden" asp-for="@item.Type1" name="type1" />
+                <input type="hidden" asp-for="@item.Attack" name="attack" />
+                <input type="hidden" asp-for="@item.Defense" name="defense" />
+                <input type="hidden" asp-for="@item.Speed" name="speed" />
+                <input type="hidden" asp-for="@item.ImageUrl" name="imageUrl" />
             </form>
             }
         </div>

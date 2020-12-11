@@ -1,15 +1,40 @@
 ﻿@page
 @model PokeVerse.Pages.Pokedex.IndexModel
 @{
+    var imageUrl = "./images/";
+    var png = ".png";
 }
 
 
-<form asp-page="/pokedex" method="post">
+<form asp-page="/Pokedex/index" method="get">
+    <h1>This is the pokedex</h1>
+
+    Here are a list of pokemon currently in your pokedex.
+    <br />
     <tbody>
-        <h1>This is the pokedex</h1>
-        @foreach (var item in Model.Pokedexs.PokedexPokemons)
+        @*TrainerPokedex.PokedexPokemons*@
+
+        @foreach (var item in Model.TrainerPokedex.PokedexPokemons)
         {
-            <partial name="_PokedexPartial" for="@item" />
+
+            var img = @imageUrl + @item.Pokemon.PokeNumber.ToString("D3") + png;
+
+            <img src=@img class="card-img-top" alt="@item.Pokemon.Name" style="width: 500px; height:500px">
+            <br />
+            
+            
+                @item.Pokemon.Name
+
+            <br />
+            @item.Pokemon.Type0
+            @item.Pokemon.Type1
+            <br />
+            @item.Pokemon.Attack
+            <br />
+            @item.Pokemon.Defense
+            <br />
+            @item.Pokemon.Speed
+            <br />
         }
     </tbody>
 </form>
