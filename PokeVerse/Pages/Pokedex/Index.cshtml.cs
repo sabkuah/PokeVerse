@@ -18,97 +18,48 @@ namespace PokeVerse.Pages.Pokedex
         private readonly PokeVerseDbContext _db;
         private readonly UserManager<IdentityUser> _userManager;
 
-
         public IndexModel(PokeVerseDbContext db, UserManager<IdentityUser> userManager)
         {
             _db = db;
             _userManager = userManager;
         }
 
-
-        public Models.Pokedex Pokedexs { get; set; }
-
+        public Models.Pokedex TrainerPokedex { get; set; }
         public ICollection<PokedexPokemon> PokemonList { get; private set; }
 
-
-
-
-        public void OnGet()
-        
-        
+        public IActionResult OnGet(Pokemon addPokemon)
         {
             System.Threading.Thread.Sleep(2000);
 
-            
+            //If no new pokemon is being added, redirect to pokedex without accessing database
+            if (addPokemon?.Name == null)
+            {
+                return RedirectToPage("/Pokedex");
+            }
+            else
+            {
+                //Finds Id of Trainer logged in
 
-            
+                string userId = _userManager.FindByNameAsync(User.Identity.Name).Result.Id;
 
+                //Finds Pokedex of Trainer logged in, assign to TrainerPokedex
+                TrainerPokedex = _db.PokeDex
+                    .Include(pp => pp.PokedexPokemons)
+                    .ThenInclude(p => p.Pokemon)
+                    .Where(pp => pp.TrainerId == userId)
+                .FirstOrDefault();
 
-            Pokedexs = _db.PokeDex
-                .Include(pp => pp.PokedexPokemons)
-                .ThenInclude(p => p.Pokemon)
-                .Where(pp => pp.Id == (int)HttpContext.Session.GetInt32("Id"))
-            .FirstOrDefault();
+                //Adds pokemon to TrainerPokedex
 
-            PokemonList = Pokedexs.PokedexPokemons;
+                PokedexPokemon p = new PokedexPokemon(TrainerPokedex.Id, addPokemon.Id);
+                _db.PokedexPokemon.Add(p);
+                _db.SaveChanges();
 
-            _db.PokeDex.Update(Pokedexs);
-            _db.SaveChanges();
-
+            }
+            return RedirectToPage();
         }
 
-        //public IActionResult OnPost(PokemonVM testPokemon)
-        //{
-
-        //    if(testPokemon?.PokeNumber == null)
-        //    {
-        //        return RedirectToPage("/Catologue");
-        //    }
-
-        //    int? pokedexId = HttpContext.Session.GetInt32("PokedexId");
-        //    bool isUser = User.Identity.IsAuthenticated;
-        //    string trainerId = null;
-
-        //    if (isUser) 
-        //    {
-        //        trainerId = _userManager.FindByNameAsync(User.Identity.Name).Result.Id;
-        //    }
-
-
-            Models.Pokedex pokedex;
-
-            //if (pokedexId == null)
-            //{
-            //    pokedex = new Models.Pokedex(Int32.Parse(trainerId));
-            //    _db.PokeDex.Add(pokedex);
-            //    _db.SaveChanges();
-            //    pokedexId = pokedex.Id;
-            //}
-            //else if (pokedexId != null)
-            //{
-            //    Pokedex = _db.PokeDex
-            //    .Include(p => p.PokedexPokemons)
-            //    .ThenInclude(pp => pp.Pokemon)
-            //    .Where(p => p.Id == (int)HttpContext.Session.GetInt32("Id"))
-            //.FirstOrDefault();
-
-            //}
-
-        //    int PokedexId = Pokedexs.Id;
-        //    PokedexPokemon pp;
-
-        //    pp = _db.PokedexPokemon
-        //        .Where(pp => pp.Pokedex.Id == pokedexId && pp.Pokemon.PokeNumber == testPokemon.PokeNumber).FirstOrDefault();
-
-            
-
-        //    _db.SaveChanges();
-
-        //    HttpContext.Session.SetInt32("pokedexId", (int)pokedexId);
-
-        //    return RedirectToPage();
-        //}
-
+     
 
     }
 }

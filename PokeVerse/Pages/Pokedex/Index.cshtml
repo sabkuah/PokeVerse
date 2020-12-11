@@ -7,7 +7,7 @@
 <form asp-page="/pokedex" method="post">
     <tbody>
         <h1>This is the pokedex</h1>
-        @foreach (var item in Model.Pokedexs.PokedexPokemons)
+        @foreach (var item in Model.TrainerPokedex.PokedexPokemons)
         {
             <partial name="_PokedexPartial" for="@item" />
         }
