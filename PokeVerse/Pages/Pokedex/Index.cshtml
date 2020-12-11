@@ -19,12 +19,21 @@
             var img = @imageUrl + @item.Pokemon.PokeNumber.ToString("D3") + png;
 
             <img src=@img class="card-img-top" alt="@item.Pokemon.Name" style="width: 500px; height:500px">
+            <br />
             @item.PokemonId
             <br />
             @item.Pokemon.Name
             <br />
-            @item.Pokemon.PokeNumber
-            @*<partial name="_PokedexPartial" for="@item" />*@
+            @item.Pokemon.Type0
+            
+            @item.Pokemon.Type1
+            <br />
+            @item.Pokemon.Attack
+            <br />
+            @item.Pokemon.Defense
+            <br />
+            @item.Pokemon.Speed
+            <br />
         }
     </tbody>
 </form>
