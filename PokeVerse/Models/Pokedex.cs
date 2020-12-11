@@ -8,14 +8,13 @@ namespace PokeVerse.Models
 {
     public class Pokedex : BaseEntity
     {
-        public virtual int TrainerId { get; private set; }
-
-        //public Pokedex(int trainerid)
-        //{
-        //    TrainerId = trainerid; 
-
-        //}
-        public virtual ICollection<Pokedex> Pokedexs { get; set; }
+        public string TrainerId { get; set; }
         public virtual ICollection<PokedexPokemon> PokedexPokemons { get; set; }
+
+        public Pokedex(string trainerId)
+        {
+            TrainerId = trainerId;
+        }
+
     }
 }

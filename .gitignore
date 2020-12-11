@@ -5,6 +5,9 @@
 
 appsettings.json
 appsettings.Development.json
+PokeVerse.csproj
+Data/PokeMigrations
+Data/Migrations
 
 # User-specific files
 *.rsuser
