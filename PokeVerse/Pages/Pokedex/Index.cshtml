@@ -1,8 +1,8 @@
 ﻿@page
 @model PokeVerse.Pages.Pokedex.IndexModel
 @{
-    var imageUrl = "./images/";
-    var png = ".png";
+    //var imageUrl = "./images/";
+    //var png = ".png";
 }
 
 
@@ -21,7 +21,11 @@
 
             @*<img src=@img class="card-img-top" alt="@item.Pokemon.Name" style="width: 500px; height:500px">*@
             <br />
-            @item.Pokemon.Name
+            
+            
+                @item.Pokemon.Name
+               
+            
             <br />
             //<partial name="_PokedexPartial" for="@item" />
             <br />

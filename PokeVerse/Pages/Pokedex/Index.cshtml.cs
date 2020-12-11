@@ -44,15 +44,16 @@ namespace PokeVerse.Pages.Pokedex
                 .ThenInclude(p => p.Pokemon)
                 .Where(pp => pp.TrainerId == userId)
             .FirstOrDefault());
-                
-                
+
+
 
             //PokedexPokemon = await _db.PokedexPokemon
             //    .Include(c => c.Pokedex).ToListAsync();
             ///*.ThenInclude(c => c.Id)*/
             ///
 
-         
+            //_db.PokedexPokemon.Update(PokedexPokemon);
+            //_db.SaveChanges();
                 
 
         }
@@ -79,7 +80,9 @@ namespace PokeVerse.Pages.Pokedex
             try
             {
                 PokedexPokemon p = new PokedexPokemon(TrainerPokedex.Id, testPokemon.Id);
+                
                 _db.PokedexPokemon.Add(p);
+                
                 _db.SaveChanges();
 
             }
