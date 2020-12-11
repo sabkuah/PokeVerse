@@ -51,6 +51,8 @@ namespace PokeVerse.Pages.Pokedex
 
             string userId = _userManager.FindByNameAsync(User.Identity.Name).Result.Id;
 
+         
+
             //Finds Pokedex of Trainer logged in, assign to TrainerPokedex
             TrainerPokedex = _db.PokeDex
                 .Include(pp => pp.PokedexPokemons)

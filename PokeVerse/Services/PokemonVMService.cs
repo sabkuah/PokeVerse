@@ -31,6 +31,7 @@ namespace PokeVerse.Services
 
                 Pokemons = pokemons.Select(p => new PokemonVM
                 {
+                    Id = p.Id,
                     PokeNumber = p.PokeNumber,
                     Name = p.Name,
                     Type0 = p.Type0,
