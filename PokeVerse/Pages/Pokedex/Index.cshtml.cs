@@ -27,27 +27,11 @@ namespace PokeVerse.Pages.Pokedex
         public Models.Pokedex TrainerPokedex { get; set; }
         public ICollection<PokedexPokemon> PokemonList { get; private set; }
 
-        public IActionResult OnGet(PokemonVM addPokemon)
-        public PokedexPokemon PokedexPokemon { get; set; }
-
         public void OnGet(PokemonVM addPokemon)
         {
             System.Threading.Thread.Sleep(2000);
 
-            //If no new pokemon is being added, redirect to pokedex without accessing database
-            if (addPokemon?.Id == null)
-            {
-                return RedirectToPage("/Pokedex");
-            }
-            else
-            {
-                //Finds Id of Trainer logged in
-            //if no new pokemon is being added, redirect to pokedex without accessing database
-            if (addPokemon?.Id !== null)
-            {
-                
-            }
-
+           
 
             //Finds Id of Trainer logged in
 
@@ -63,11 +47,19 @@ namespace PokeVerse.Pages.Pokedex
             //Check if pokemon is in the pokedex
             //If not, Adds pokemon to TrainerPokedex  
 
+            try
+            {
+                PokedexPokemon p = new PokedexPokemon(TrainerPokedex.Id, 59);
+                _db.PokedexPokemon.Add(p);
+                _db.SaveChanges();
+            }
+            catch
+            {
+                Console.Write("Pokemon has already been added");
 
+            }
 
-            PokedexPokemon p = new PokedexPokemon(TrainerPokedex.Id, 59);
-            _db.PokedexPokemon.Add(p);
-            _db.SaveChanges();
+            
 
         }
 
