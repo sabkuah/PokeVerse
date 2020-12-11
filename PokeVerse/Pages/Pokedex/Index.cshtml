@@ -1,6 +1,8 @@
 ﻿@page
 @model PokeVerse.Pages.Pokedex.IndexModel
 @{
+    var imageUrl = "./images/";
+    var png = ".png";
 }
 
 
@@ -13,9 +15,15 @@
 
         @foreach (var item in Model.TrainerPokedex.PokedexPokemons)
         {
+
+            var img = @imageUrl + @item.Pokemon.PokeNumber.ToString("D3") + png;
+
+            <img src=@img class="card-img-top" alt="@item.Pokemon.Name" style="width: 500px; height:500px">
             @item.PokemonId
             <br />
-
+            @item.Pokemon.Name
+            <br />
+            @item.Pokemon.PokeNumber
             @*<partial name="_PokedexPartial" for="@item" />*@
         }
     </tbody>

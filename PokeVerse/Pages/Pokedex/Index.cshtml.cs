@@ -27,6 +27,7 @@ namespace PokeVerse.Pages.Pokedex
         public Models.Pokedex TrainerPokedex { get; set; }
         
 
+
         public void OnGet()
         {
             System.Threading.Thread.Sleep(2000);
