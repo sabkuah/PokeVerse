@@ -28,6 +28,9 @@ namespace PokeVerse.Pages.Pokedex
         public ICollection<PokedexPokemon> PokemonList { get; private set; }
 
         public IActionResult OnGet(PokemonVM addPokemon)
+        public PokedexPokemon PokedexPokemon { get; set; }
+
+        public void OnGet(PokemonVM addPokemon)
         {
             System.Threading.Thread.Sleep(2000);
 
@@ -39,8 +42,16 @@ namespace PokeVerse.Pages.Pokedex
             else
             {
                 //Finds Id of Trainer logged in
+            //if no new pokemon is being added, redirect to pokedex without accessing database
+            if (addPokemon?.Id !== null)
+            {
+                
+            }
 
-                string userId = _userManager.FindByNameAsync(User.Identity.Name).Result.Id;
+
+            //Finds Id of Trainer logged in
+
+            string userId = _userManager.FindByNameAsync(User.Identity.Name).Result.Id;
 
                 //Finds Pokedex of Trainer logged in, assign to TrainerPokedex
                 TrainerPokedex = _db.PokeDex
@@ -49,14 +60,43 @@ namespace PokeVerse.Pages.Pokedex
                     .Where(pp => pp.TrainerId == userId)
                 .FirstOrDefault();
 
-                //Adds pokemon to TrainerPokedex
+            //Check if pokemon is in the pokedex
+            //If not, Adds pokemon to TrainerPokedex  
 
-                PokedexPokemon p = new PokedexPokemon(TrainerPokedex.Id, addPokemon.Id);
-                _db.PokedexPokemon.Add(p);
-                _db.SaveChanges();
 
+
+            PokedexPokemon p = new PokedexPokemon(TrainerPokedex.Id, 59);
+            _db.PokedexPokemon.Add(p);
+            _db.SaveChanges();
+
+        }
+
+
+        public IActionResult OnPost(PokemonVM testPokemon)
+        {
+            if (testPokemon?.PokeNumber == null)
+            {
+                return RedirectToPage("/Pokedex");
             }
-            return RedirectToPage();
+
+
+            string userId = _userManager.FindByNameAsync(User.Identity.Name).Result.Id;
+           
+
+            TrainerPokedex = _db.PokeDex
+                    .Include(p => p.PokedexPokemons)
+                    .ThenInclude(pp => pp.Pokemon)
+                    .Where(p => p.TrainerId == userId)
+                .FirstOrDefault();
+
+            PokedexPokemon pp;
+
+            pp = new PokedexPokemon(TrainerPokedex.Id, testPokemon.PokeNumber);
+            _db.PokedexPokemon.Add(pp);
+            _db.SaveChanges();
+
+
+            return RedirectToPage("/Pokedex/index");
         }
 
      
