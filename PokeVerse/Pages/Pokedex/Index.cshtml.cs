@@ -25,10 +25,12 @@ namespace PokeVerse.Pages.Pokedex
         }
 
         public Models.Pokedex TrainerPokedex { get; set; }
+
+        public PokedexPokemon PokedexPokemon { get; set; }
         
 
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
             System.Threading.Thread.Sleep(2000);
 
@@ -37,11 +39,21 @@ namespace PokeVerse.Pages.Pokedex
             string userId = _userManager.FindByNameAsync(User.Identity.Name).Result.Id;
 
             //Finds Pokedex of Trainer logged in, assign to TrainerPokedex
-            TrainerPokedex = _db.PokeDex
+            await Task.Run(() => TrainerPokedex = _db.PokeDex
                 .Include(pp => pp.PokedexPokemons)
                 .ThenInclude(p => p.Pokemon)
                 .Where(pp => pp.TrainerId == userId)
-            .FirstOrDefault();
+            .FirstOrDefault());
+                
+                
+
+            //PokedexPokemon = await _db.PokedexPokemon
+            //    .Include(c => c.Pokedex).ToListAsync();
+            ///*.ThenInclude(c => c.Id)*/
+            ///
+
+         
+                
 
         }
 
@@ -77,7 +89,7 @@ namespace PokeVerse.Pages.Pokedex
 
             }
 
-            RedirectToPage();
+            RedirectToPage("/Pokedex/index");
 
 
         }

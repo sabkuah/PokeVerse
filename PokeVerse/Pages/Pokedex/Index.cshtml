@@ -6,12 +6,13 @@
 }
 
 
-<form asp-page="/pokedex" method="get">
+<form asp-page="/Pokedex/index" method="post">
     <h1>This is the pokedex</h1>
 
     Here are a list of pokemon currently in your pokedex.
     <br />
     <tbody>
+        @*TrainerPokedex.PokedexPokemons*@
 
         @foreach (var item in Model.TrainerPokedex.PokedexPokemons)
         {
@@ -20,18 +21,18 @@
 
             @*<img src=@img class="card-img-top" alt="@item.Pokemon.Name" style="width: 500px; height:500px">*@
             <br />
-            @item.PokemonId
-            <br />
             @item.Pokemon.Name
             <br />
-            @item.Pokemon.Type0 
-            @item.Pokemon.Type1
+            //<partial name="_PokedexPartial" for="@item" />
             <br />
-            @item.Pokemon.Attack
+            //@item.Pokemon.Type0
+            //@item.Pokemon.Type1
             <br />
-            @item.Pokemon.Defense
+            //@item.Pokemon.Attack
             <br />
-            @item.Pokemon.Speed
+            //@item.Pokemon.Defense
+            <br />
+            //@item.Pokemon.Speed
             <br />
         }
     </tbody>
