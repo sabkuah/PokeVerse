@@ -55,27 +55,26 @@ namespace PokeVerse.Data.PokeMigrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("PokeNumber")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type0")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type1")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("Attack")
                         .HasColumnType("int");
 
                     b.Property<int>("Defense")
                         .HasColumnType("int");
 
-            
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PokeNumber")
+                        .HasColumnType("int");
+
                     b.Property<int>("Speed")
                         .HasColumnType("int");
+
+                    b.Property<string>("Type0")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type1")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

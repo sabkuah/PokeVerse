@@ -77,3 +77,19 @@ body {
 .login {
     background-color: rgb(249,246,255);
 }
+
+/* Pokedex Page*/
+.trainer-profile {
+    width: 100%;
+    min-height: 50%;
+    background-color: gray;
+}
+.trainer-img {
+    width: 90%;
+    margin-top: 2%;
+    display:flex;
+    justify-content:center;
+}
+.trainer-info {
+    margin: 2%;
+}
