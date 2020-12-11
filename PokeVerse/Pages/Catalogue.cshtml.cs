@@ -21,35 +21,24 @@ namespace PokeVerse.Pages
             _pokemonVMService = pokemonVMService;
         }
 
-        //private readonly PokeVerse.Data.PokeVerseDbContext _context;
+        [BindProperty(SupportsGet = true)]
+        public int CurrentPage { get; set; } = 1;
+        public int Count { get; set; }
+        public int PageSize { get; set; } = 12;
+        public List<Pokemon> Pokemons { get; set; }
 
-        //public _CatalogueModel(PokeVerse.Data.PokeVerseDbContext context)
-        //{
-        //    _context = context;
-        //}
+        public int TotalPages => (int)Math.Ceiling(decimal.Divide(Count, PageSize));
+
+        public bool ShowPrevious => CurrentPage > 1;
+        public bool ShowNext => CurrentPage < TotalPages;
+
 
         public PokemonIndexVM PokemonIndex = new PokemonIndexVM();
-
-        //public List<PokemonVM> PokemonVM = new List<PokemonVM>();
+      
 
         public async Task OnGet(PokemonIndexVM pokemonIndex)
         {
-            PokemonIndex = _pokemonVMService.GetPokemonsVM(pokemonIndex.TypesFilterApplied);
-
+            PokemonIndex = _pokemonVMService.GetPokemonsVM(pokemonIndex.TypesFilterApplied, CurrentPage, PageSize);
         }
-
-        //public async Task OnGetAsync()
-        //{
-        //    PokemonVM = await _context.Pokemon.Select(p => new PokemonVM
-        //    {
-        //        PokeNumber = p.PokeNumber,
-        //        Name = p.Name,
-        //        Type0 = p.Type0,
-        //        Type1 = p.Type1,
-        //        Attack = p.Attack,
-        //        Defense = p.Defense,
-        //        Speed = p.Speed,
-        //    }).ToListAsync();
-        //}
     }
 }
