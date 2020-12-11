@@ -202,7 +202,6 @@ namespace PokeVerse.Data
                 new Models.Type("Psychic"),
                 new Models.Type("Ice"),
                 new Models.Type("Dragon"),
-                new Models.Type("Dark"),
                 new Models.Type("Fairy"),
             };
         }

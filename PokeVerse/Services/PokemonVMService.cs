@@ -24,7 +24,7 @@ namespace PokeVerse.Services
         {
             IQueryable<Pokemon> pokemons = _pokemonRepo.GetAll().OrderBy(Pokemon => Pokemon.PokeNumber);
             if (typeName != null && typeName !=  "NULL")
-                pokemons = pokemons.Where(p => p.Type0 == typeName);
+                pokemons = pokemons.Where(p => p.Type0 == typeName || p.Type1 == typeName);
 
             var vm = new PokemonIndexVM()
             {
