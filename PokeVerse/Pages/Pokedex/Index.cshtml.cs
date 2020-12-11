@@ -80,9 +80,8 @@ namespace PokeVerse.Pages.Pokedex
             try
             {
                 PokedexPokemon p = new PokedexPokemon(TrainerPokedex.Id, testPokemon.Id);
-                
-                _db.PokedexPokemon.Add(p);
-                
+                p.Pokemon = new Pokemon(testPokemon.PokeNumber, testPokemon.Name, testPokemon.Type0, testPokemon.Type1, testPokemon.Attack, testPokemon.Defense, testPokemon.Speed);
+                TrainerPokedex.PokedexPokemons.Add(p);
                 _db.SaveChanges();
 
             }
