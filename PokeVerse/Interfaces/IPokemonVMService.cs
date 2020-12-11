@@ -9,7 +9,7 @@ namespace PokeVerse.Interfaces
 {
     public interface IPokemonVMService
     {
-        PokemonIndexVM GetPokemonsVM(int? typeId);
+        PokemonIndexVM GetPokemonsVM(string typeName);
         IEnumerable<SelectListItem> GetTypes();
     }
 }
