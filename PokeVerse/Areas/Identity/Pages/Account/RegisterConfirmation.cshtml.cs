@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using PokeVerse.Models;
+using PokeVerse.Data;
 
 namespace PokeVerse.Areas.Identity.Pages.Account
 {
@@ -14,14 +16,18 @@ namespace PokeVerse.Areas.Identity.Pages.Account
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IEmailSender _sender;
+        private readonly PokeVerseDbContext _db;
 
-        public RegisterConfirmationModel(UserManager<IdentityUser> userManager, IEmailSender sender)
+        public RegisterConfirmationModel(UserManager<IdentityUser> userManager, IEmailSender sender, PokeVerseDbContext db)
         {
             _userManager = userManager;
             _sender = sender;
+            _db = db;
         }
 
         public string Email { get; set; }
+
+       
 
         public bool DisplayConfirmAccountLink { get; set; }
 
@@ -45,7 +51,11 @@ namespace PokeVerse.Areas.Identity.Pages.Account
             DisplayConfirmAccountLink = true;
             if (DisplayConfirmAccountLink)
             {
+                Pokedex pokedex;
                 var userId = await _userManager.GetUserIdAsync(user);
+                pokedex = new Pokedex(userId);
+                _db.PokeDex.Add(pokedex);
+                _db.SaveChanges();
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                 EmailConfirmationUrl = Url.Page(

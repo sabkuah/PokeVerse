@@ -13,7 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Data\Migrations\PokeVerseDbContextModelSnapshot.cs" />
+    <Compile Include="Data\Migrations\20201211001318_IntitialAuthSchema.cs" />
+    <Compile Include="Data\Migrations\20201211001318_IntitialAuthSchema.Designer.cs" />
+    <Compile Include="Data\Migrations\AuthDbContextModelSnapshot.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Data\PokeMigrations\" />
     <Folder Include="Pages\Shared\Components\" />
   </ItemGroup>
 
