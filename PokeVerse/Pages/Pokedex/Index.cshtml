@@ -1,0 +1,15 @@
+﻿@page
+@model PokeVerse.Pages.Pokedex.IndexModel
+@{
+}
+
+
+<form asp-page="/pokedex" method="post">
+    <tbody>
+        <h1>This is the pokedex</h1>
+        @foreach (var item in Model.Pokedexs.PokedexPokemons)
+        {
+            <partial name="_PokedexPartial" for="@item" />
+        }
+    </tbody>
+</form>

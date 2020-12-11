@@ -22,8 +22,6 @@ namespace PokeVerse.Data
 
         public DbSet<PokedexPokemon> PokedexPokemon { get; set; }
 
-        public DbSet<Trainer> Trainer { get; set; }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -22,7 +22,7 @@ namespace PokeVerse.Services
 
         public PokemonIndexVM GetPokemonsVM(string typeName)
         {
-            IQueryable<Pokemon> pokemons = _pokemonRepo.GetAll();
+            IQueryable<Pokemon> pokemons = _pokemonRepo.GetAll().OrderBy(Pokemon => Pokemon.PokeNumber);
             if (typeName != null && typeName !=  "NULL")
                 pokemons = pokemons.Where(p => p.Type0 == typeName);
 
@@ -48,7 +48,7 @@ namespace PokeVerse.Services
             var types = _typeRepo.GetAll().Select(t => new SelectListItem()
             {
                 Value = t.Name.ToString(),
-                Text = t.Name
+                Text = t.Name,
             }).OrderBy(t => t.Text).ToList();
 
             var allItem = new SelectListItem()
