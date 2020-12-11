@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PokeVerse.Data;
 
 namespace PokeVerse.Data.PokeMigrations
 {
     [DbContext(typeof(PokeVerseDbContext))]
-    partial class PokeVerseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201211005745_InitialSchema")]
+    partial class InitialSchema
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,27 +57,26 @@ namespace PokeVerse.Data.PokeMigrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("PokeNumber")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type0")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type1")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("Attack")
                         .HasColumnType("int");
 
                     b.Property<int>("Defense")
                         .HasColumnType("int");
 
-            
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PokeNumber")
+                        .HasColumnType("int");
+
                     b.Property<int>("Speed")
                         .HasColumnType("int");
+
+                    b.Property<string>("Type0")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type1")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
