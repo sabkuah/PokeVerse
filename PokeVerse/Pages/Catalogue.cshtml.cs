@@ -21,16 +21,8 @@ namespace PokeVerse.Pages
             _pokemonVMService = pokemonVMService;
         }
 
-        //private readonly PokeVerse.Data.PokeVerseDbContext _context;
-
-        //public _CatalogueModel(PokeVerse.Data.PokeVerseDbContext context)
-        //{
-        //    _context = context;
-        //}
-
         public PokemonIndexVM PokemonIndex = new PokemonIndexVM();
 
-        //public List<PokemonVM> PokemonVM = new List<PokemonVM>();
 
         public async Task OnGet(PokemonIndexVM pokemonIndex)
         {
@@ -38,18 +30,5 @@ namespace PokeVerse.Pages
 
         }
 
-        //public async Task OnGetAsync()
-        //{
-        //    PokemonVM = await _context.Pokemon.Select(p => new PokemonVM
-        //    {
-        //        PokeNumber = p.PokeNumber,
-        //        Name = p.Name,
-        //        Type0 = p.Type0,
-        //        Type1 = p.Type1,
-        //        Attack = p.Attack,
-        //        Defense = p.Defense,
-        //        Speed = p.Speed,
-        //    }).ToListAsync();
-        //}
     }
 }

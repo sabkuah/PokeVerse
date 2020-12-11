@@ -6,14 +6,15 @@
 
 <form asp-page="/pokedex" method="post">
     <h1>This is the pokedex</h1>
-    <br/>
+
     Here are a list of pokemon currently in your pokedex.
+    <br />
     <tbody>
-        
+
         @foreach (var item in Model.TrainerPokedex.PokedexPokemons)
         {
-            @item.Pokemon.Name;
-            <br/>
+            @item.PokemonId
+            <br />
 
             @*<partial name="_PokedexPartial" for="@item" />*@
         }

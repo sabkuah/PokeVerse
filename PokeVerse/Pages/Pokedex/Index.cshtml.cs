@@ -25,33 +25,48 @@ namespace PokeVerse.Pages.Pokedex
         }
 
         public Models.Pokedex TrainerPokedex { get; set; }
-        public ICollection<PokedexPokemon> PokemonList { get; private set; }
+        
 
-        public void OnGet(PokemonVM addPokemon)
+        public void OnGet()
         {
             System.Threading.Thread.Sleep(2000);
-
-           
 
             //Finds Id of Trainer logged in
 
             string userId = _userManager.FindByNameAsync(User.Identity.Name).Result.Id;
 
-                //Finds Pokedex of Trainer logged in, assign to TrainerPokedex
-                TrainerPokedex = _db.PokeDex
-                    .Include(pp => pp.PokedexPokemons)
-                    .ThenInclude(p => p.Pokemon)
-                    .Where(pp => pp.TrainerId == userId)
-                .FirstOrDefault();
+            //Finds Pokedex of Trainer logged in, assign to TrainerPokedex
+            TrainerPokedex = _db.PokeDex
+                .Include(pp => pp.PokedexPokemons)
+                .ThenInclude(p => p.Pokemon)
+                .Where(pp => pp.TrainerId == userId)
+            .FirstOrDefault();
+
+        }
+
+
+        public void OnPost(PokemonVM testPokemon)
+        {
+            //Finds Id of Trainer logged in
+
+            string userId = _userManager.FindByNameAsync(User.Identity.Name).Result.Id;
+
+            //Finds Pokedex of Trainer logged in, assign to TrainerPokedex
+            TrainerPokedex = _db.PokeDex
+                .Include(pp => pp.PokedexPokemons)
+                .ThenInclude(p => p.Pokemon)
+                .Where(pp => pp.TrainerId == userId)
+            .FirstOrDefault();
 
             //Check if pokemon is in the pokedex
             //If not, Adds pokemon to TrainerPokedex  
 
             try
             {
-                PokedexPokemon p = new PokedexPokemon(TrainerPokedex.Id, 59);
+                PokedexPokemon p = new PokedexPokemon(TrainerPokedex.Id, testPokemon.Id);
                 _db.PokedexPokemon.Add(p);
                 _db.SaveChanges();
+
             }
             catch
             {
@@ -59,39 +74,12 @@ namespace PokeVerse.Pages.Pokedex
 
             }
 
-            
+            RedirectToPage();
+
 
         }
 
 
-        public IActionResult OnPost(PokemonVM testPokemon)
-        {
-            if (testPokemon?.PokeNumber == null)
-            {
-                return RedirectToPage("/Pokedex");
-            }
-
-
-            string userId = _userManager.FindByNameAsync(User.Identity.Name).Result.Id;
-           
-
-            TrainerPokedex = _db.PokeDex
-                    .Include(p => p.PokedexPokemons)
-                    .ThenInclude(pp => pp.Pokemon)
-                    .Where(p => p.TrainerId == userId)
-                .FirstOrDefault();
-
-            PokedexPokemon pp;
-
-            pp = new PokedexPokemon(TrainerPokedex.Id, testPokemon.PokeNumber);
-            _db.PokedexPokemon.Add(pp);
-            _db.SaveChanges();
-
-
-            return RedirectToPage("/Pokedex/index");
-        }
-
-     
 
     }
 }

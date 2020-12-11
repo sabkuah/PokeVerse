@@ -7,9 +7,13 @@
 
   <ItemGroup>
     <Compile Remove="Data\Migrations\**" />
+    <Compile Remove="Pages\Shared\Components\**" />
     <Content Remove="Data\Migrations\**" />
+    <Content Remove="Pages\Shared\Components\**" />
     <EmbeddedResource Remove="Data\Migrations\**" />
+    <EmbeddedResource Remove="Pages\Shared\Components\**" />
     <None Remove="Data\Migrations\**" />
+    <None Remove="Pages\Shared\Components\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,10 +34,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
     <PackageReference Include="PaulMiami.AspNetCore.Mvc.Recaptcha" Version="1.2.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Pages\Shared\Components\" />
   </ItemGroup>
 
 </Project>
