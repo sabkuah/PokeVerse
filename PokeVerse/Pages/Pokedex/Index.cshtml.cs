@@ -35,8 +35,14 @@ namespace PokeVerse.Pages.Pokedex
 
         public void OnGet()
         
+        
         {
             System.Threading.Thread.Sleep(2000);
+
+            
+
+            
+
 
             Pokedexs = _db.PokeDex
                 .Include(pp => pp.PokedexPokemons)
