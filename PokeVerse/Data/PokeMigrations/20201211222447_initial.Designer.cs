@@ -9,8 +9,8 @@ using PokeVerse.Data;
 namespace PokeVerse.Data.PokeMigrations
 {
     [DbContext(typeof(PokeVerseDbContext))]
-    [Migration("20201211022347_UpdatePokedexPokemon")]
-    partial class UpdatePokedexPokemon
+    [Migration("20201211222447_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

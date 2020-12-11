@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Data\Migrations\20201211005653_InitialSchema.cs" />
-    <Compile Include="Data\Migrations\20201211005653_InitialSchema.Designer.cs" />
+    <Compile Include="Data\Migrations\20201211222539_initial.cs" />
+    <Compile Include="Data\Migrations\20201211222539_initial.Designer.cs" />
     <Compile Include="Data\Migrations\AuthDbContextModelSnapshot.cs" />
   </ItemGroup>
 
@@ -34,6 +34,10 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
     <PackageReference Include="PaulMiami.AspNetCore.Mvc.Recaptcha" Version="1.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\PokeMigrations\" />
   </ItemGroup>
 
 </Project>

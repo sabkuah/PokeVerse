@@ -5,36 +5,94 @@
     var png = ".png";
 }
 
+@{
+    ViewData["Title"] = "TRAINERS POKEDEX";
+}
+<h1>@ViewData["Title"]</h1>
+<body style="background-color:rgb(249,243,202)">
 
-<form asp-page="/Pokedex/index" method="get">
-    <h1>This is the pokedex</h1>
+    <div class="row">
 
-    Here are a list of pokemon currently in your pokedex.
-    <br />
-    <tbody>
-        @*TrainerPokedex.PokedexPokemons*@
+        <div class="col-lg-3">
+            <div class="trainer-profile">
+                <div class="trainer-img">
+                    <img src="~/images/ash.png" style="width: 220px;" />
+                </div>
+                <div class="trainer-info">
+                    <h3>ASH KETCHUM</h3>
+                    <p>Number of Pokemon:</p>
+                    <p>Trainer Level:</p>
+                    <p>Date joined:</p>
+                </div>
+            </div>
+        </div>
 
-        @foreach (var item in Model.TrainerPokedex.PokedexPokemons)
-        {
+        <div class="col-lg-9">
+            <form asp-page="/Pokedex/index" method="get">
 
-            var img = @imageUrl + @item.Pokemon.PokeNumber.ToString("D3") + png;
+                @foreach (var item in Model.TrainerPokedex.PokedexPokemons)
+                {
+                    var img = @imageUrl + @item.Pokemon.PokeNumber.ToString("D3") + png;
+                    <div class="card" style="width: 100%;">
+                        <div class="row">
 
-            <img src=@img class="card-img-top" alt="@item.Pokemon.Name" style="width: 500px; height:500px">
-            <br />
-            
-            
-                @item.Pokemon.Name
+                            <div class="col">
+                                <div class="card" style="width: 20rem;">
 
-            <br />
-            @item.Pokemon.Type0
-            @item.Pokemon.Type1
-            <br />
-            @item.Pokemon.Attack
-            <br />
-            @item.Pokemon.Defense
-            <br />
-            @item.Pokemon.Speed
-            <br />
-        }
-    </tbody>
-</form>
+                                    <img src=@img class="card-img-top" alt="@item.Pokemon.Name" style="width: 500px; height:500px">
+                                    <div class="card-body">
+                                        <CENTER>
+                                            <h5 class="card-title">@item.Pokemon.Name</h5>
+                                            <p class="card-text">
+                                                @item.Pokemon.Type0 <br />
+                                                @item.Pokemon.Type1
+                                            </p>
+                                        </CENTER>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col align-self-center justify-content-center">
+                                <div>
+                                    <p>SPEED:@item.Pokemon.Speed</p>
+                                    <p>Defense:@item.Pokemon.Defense</p>
+                                    <p>Attack:@item.Pokemon.Attack</p>
+                                </div>
+                            </div>
+                            <div class="col align-self-center justify-content-center">
+                                <button type="button" class="btn btn-primary">ADD +</button>
+                                <button type="button" class="btn btn-warning ml-2">DELETE -</button>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </form>
+        </div>
+
+    </div>
+
+</body>
+
+    @*var img = @imageUrl + @item.Pokemon.PokeNumber.ToString("D3") + png;
+
+        <img src=@img class="card-img-top" alt="@item.Pokemon.Name" style="width: 500px; height:500px">
+        <br />
+
+
+            @item.Pokemon.Name
+
+        <br />
+        @item.Pokemon.Type0
+        @item.Pokemon.Type1
+        <br />
+        @item.Pokemon.Attack
+        <br />
+        @item.Pokemon.Defense
+        <br />
+        @item.Pokemon.Speed
+        <br />*@
+
+
+

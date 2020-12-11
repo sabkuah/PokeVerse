@@ -2,7 +2,7 @@
 
 namespace PokeVerse.Data.PokeMigrations
 {
-    public partial class InitialSchema : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
