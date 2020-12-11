@@ -3,24 +3,61 @@
 @{
     ViewData["Title"] = "TRAINERS POKEDEX";
 }
-<h1>@ViewData["Title"]</h1> 
+<h1>@ViewData["Title"]</h1>
+<body style="background-color:rgb(249,243,202)">
 
-<p>This is some text. <img src="~/images/map.png" alt="Smiley face" width="500"
-        height="500" style="float:right">This is some text. This is some text. This is some text.</p>
-<div class="card" style="width: 20rem;">
-    <img class="card-img-top" src="~/images/001.png" alt="Card image cap">
-    <div class="card-body">
-        <CENTER>
-            <h5 class="card-title">Bulbasor</h5>
-            <p class="card-text">GRASS POISON</p>
-        </CENTER>
+    <div class="row">
 
-        <div class="row">
-            <div class="col-md-10 bg-light text-right">
-                <button type="button" class="btn btn-primary">ADD +</button>
-                <button type="button" class="btn btn-warning ml-2">DELETE -</button>
+        <div class="col-lg-3">
+            <div class="trainer-profile">
+                <div class="trainer-img">
+                    <img src="~/images/ash.png" style="width: 220px;" />
+                </div>
+                <div class="trainer-info">
+                    <p>ASH KETCHUM</p>
+                    <p>Number of Pokemon:</p>
+                    <p>Trainer Level:</p>
+                    <p>Date joined:</p>
+                </div>
             </div>
         </div>
 
+        <div class="col-lg-9">
+            <div class="card" style="width: 100%;">
+                <div class="row">
+
+                    <div class="col">
+                        <div class="card" style="width: 20rem;">
+                            <img class="card-img-top" src="~/images/001.png" alt="Card image cap">
+                            <div class="card-body">
+                                <CENTER>
+                                    <h5 class="card-title">Bulbasor</h5>
+                                    <p class="card-text">GRASS POISON</p>
+                                </CENTER>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col align-self-center justify-content-center">
+                        <div>
+                            <p>SPEED:</p>
+                            <p>Defense:</p>
+                            <p>Attack:</p>
+                        </div>
+                    </div>
+                    <div class="col align-self-center justify-content-center">
+                        <button type="button" class="btn btn-primary">ADD +</button>
+                        <button type="button" class="btn btn-warning ml-2">DELETE -</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
     </div>
-</div>
+
+</body>
