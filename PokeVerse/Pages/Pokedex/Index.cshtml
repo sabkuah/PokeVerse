@@ -6,28 +6,29 @@
 }
 
 @{
-    ViewData["Title"] = "TRAINERS POKEDEX";
+    ViewData["Title"] = "TRAINER POKEDEX";
 }
 <h1>@ViewData["Title"]</h1>
 <body style="background-color:rgb(249,243,202)">
 
     <div class="row">
 
-        <div class="col-lg-3">
+        <div class="col-lg-4">
             <div class="trainer-profile">
-                <div class="trainer-img">
-                    <img src="~/images/ash.png" style="width: 220px;" />
+                <div class="trainer-img-container">
+                    <img src="~/images/ash.png" class="trainer-img" />
                 </div>
-                <div class="trainer-info">
+                
+                <ul class="trainer-info">
                     <h3>ASH KETCHUM</h3>
-                    <p>Number of Pokemon:</p>
-                    <p>Trainer Level:</p>
-                    <p>Date joined:</p>
-                </div>
+                    <li>Number of Pokemon:</li>
+                    <li>Trainer Level:</li>
+                    <li>Date joined:</li>
+                </ul>
             </div>
         </div>
 
-        <div class="col-lg-9">
+        <div class="col-lg-8 pokemon-container">
             <form asp-page="/Pokedex/index" method="get">
 
                 @foreach (var item in Model.TrainerPokedex.PokedexPokemons)
@@ -36,10 +37,10 @@
                     <div class="card" style="width: 100%;">
                         <div class="row">
 
-                            <div class="col">
-                                <div class="card" style="width: 20rem;">
+                            <div class="col pokemon-image m-1">
+                                <div class="card" style="width: 17em;">
 
-                                    <img src=@img class="card-img-top" alt="@item.Pokemon.Name" style="width: 500px; height:500px">
+                                    <img src=@img class="card-img-top" alt="@item.Pokemon.Name" >
                                     <div class="card-body">
                                         <CENTER>
                                             <h5 class="card-title">@item.Pokemon.Name</h5>
@@ -53,16 +54,16 @@
                                 </div>
                             </div>
 
-                            <div class="col align-self-center justify-content-center">
+                            <div class="col align-self-center">
                                 <div>
-                                    <p>SPEED:@item.Pokemon.Speed</p>
-                                    <p>Defense:@item.Pokemon.Defense</p>
-                                    <p>Attack:@item.Pokemon.Attack</p>
+                                    <p>SPEED: @item.Pokemon.Speed</p>
+                                    <p>Defense: @item.Pokemon.Defense</p>
+                                    <p>Attack: @item.Pokemon.Attack</p>
                                 </div>
                             </div>
-                            <div class="col align-self-center justify-content-center">
-                                <button type="button" class="btn btn-primary">ADD +</button>
-                                <button type="button" class="btn btn-warning ml-2">DELETE -</button>
+                            <div class="col align-self-center">
+                                <button type="button" class="btn btn-primary py-1">ADD +</button>
+                                <button type="button" class="btn btn-warning py-1">DELETE -</button>
                             </div>
                         </div>
                     </div>
