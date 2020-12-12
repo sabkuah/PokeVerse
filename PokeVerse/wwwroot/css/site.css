@@ -77,3 +77,42 @@ body {
 .login {
     background-color: rgb(249,246,255);
 }
+
+/* Pokedex Page*/
+.trainer-profile {
+    width: 100%;
+    background-color: #e12e2e;
+    border-radius: 15px;
+    padding-bottom: 10%;
+    box-shadow: 5px 5px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.trainer-img-container {
+    width: 80%;
+    height: fit-content;
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    border-radius: 15px;
+}
+
+.trainer-img {
+    height: 15rem;
+}
+
+.trainer-info {
+    margin: 1%;
+    list-style: none;
+    padding: 0;
+}
+
+.pokemon-container {
+    padding: 3%;
+    background-color: royalblue;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px;
+}

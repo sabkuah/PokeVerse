@@ -10,8 +10,8 @@ using PokeVerse.Data;
 namespace PokeVerse.Data.Migrations
 {
     [DbContext(typeof(AuthDbContext))]
-    [Migration("20201211005653_InitialSchema")]
-    partial class InitialSchema
+    [Migration("20201211222539_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
