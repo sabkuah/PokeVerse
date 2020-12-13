@@ -9,8 +9,8 @@
     ViewData["Title"] = "TRAINER POKEDEX";
 }
 <h1>@ViewData["Title"]</h1>
-<body style="background-color:rgb(249,243,202)">
-
+<body>
+   
     <div class="row">
 
         <div class="col-lg-4">
@@ -18,7 +18,7 @@
                 <div class="trainer-img-container">
                     <img src="~/images/ash.png" class="trainer-img" />
                 </div>
-                
+
                 <ul class="trainer-info">
                     <h3>ASH KETCHUM</h3>
                     <li>Number of Pokemon:</li>
@@ -40,7 +40,7 @@
                             <div class="col pokemon-image m-1">
                                 <div class="card" style="width: 17em;">
 
-                                    <img src=@img class="card-img-top" alt="@item.Pokemon.Name" >
+                                    <img src=@img class="card-img-top" alt="@item.Pokemon.Name">
                                     <div class="card-body">
                                         <CENTER>
                                             <h5 class="card-title">@item.Pokemon.Name</h5>
@@ -73,27 +73,8 @@
         </div>
 
     </div>
-
 </body>
 
-    @*var img = @imageUrl + @item.Pokemon.PokeNumber.ToString("D3") + png;
-
-        <img src=@img class="card-img-top" alt="@item.Pokemon.Name" style="width: 500px; height:500px">
-        <br />
-
-
-            @item.Pokemon.Name
-
-        <br />
-        @item.Pokemon.Type0
-        @item.Pokemon.Type1
-        <br />
-        @item.Pokemon.Attack
-        <br />
-        @item.Pokemon.Defense
-        <br />
-        @item.Pokemon.Speed
-        <br />*@
 
 
 
