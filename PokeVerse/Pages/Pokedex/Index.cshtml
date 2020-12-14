@@ -29,11 +29,13 @@
         </div>
 
         <div class="col-lg-8 pokemon-container">
-            <form asp-page="/Pokedex/index" method="get">
 
-                @foreach (var item in Model.TrainerPokedex.PokedexPokemons)
-                {
-                    var img = @imageUrl + @item.Pokemon.PokeNumber.ToString("D3") + png;
+
+            @foreach (var item in Model.TrainerPokedex.PokedexPokemons)
+            {
+                var img = @imageUrl + @item.Pokemon.PokeNumber.ToString("D3") + png;
+                <form method="post">
+                    
                     <div class="card" style="width: 100%;">
                         <div class="row">
 
@@ -62,15 +64,19 @@
                                 </div>
                             </div>
                             <div class="col align-self-center">
-                                <button type="button" class="btn btn-primary py-1">ADD +</button>
-                                <button type="button" class="btn btn-warning py-1">DELETE -</button>
+                                
+                                <button type="submit" asp-page-handler="delete" class="btn btn-warning py-1">DELETE -</button>
+                                <input type="hidden" asp-for="@item.Pokedex.Id" name="pokedexId" />
+                                <input type="hidden" asp-for="@item.Pokemon.Id" name="pokemonId" />
+                                
                             </div>
                         </div>
                     </div>
 
-                }
-            </form>
-        </div>
+                    
+                </form>
+            }
+            </div>
 
     </div>
 </body>

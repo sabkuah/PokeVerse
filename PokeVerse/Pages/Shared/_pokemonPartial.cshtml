@@ -1,0 +1,24 @@
+﻿@model PokeVerse.ViewModels.PokemonVM
+
+<form asp-page="/Pokedex/Index" method="post">
+    <div class="app-product-item col-lg-4 py-1">
+        <div class="card" style="width: 20rem;">
+            <img src=@Model.ImageUrl class="card-img-top" alt="@Model.Name">
+            <div class="card-body">
+                <h5 class="card-title" style="text-align: center">@Model.PokeNumber</h5>
+                <h6 class="card-subtitle mb-2 text-muted" style="text-align: center">@Model.Name</h6>
+                <p class="card-text" style="text-align: center">@Model.Type0 @Model.Type1</p>
+                <input class="app-product-addcart-button btn-block" style="background-color: lightyellow" type="submit" value=" Add To Pokedex " asp-page="/Pokedex/Index" />
+            </div>
+        </div>
+    </div>
+    <input type="hidden" asp-for="@Model.Id" name="id" />
+    <input type="hidden" asp-for="@Model.PokeNumber" name="pokeNumber" />
+    <input type="hidden" asp-for="@Model.Name" name="name" />
+    <input type="hidden" asp-for="@Model.Type0" name="type0" />
+    <input type="hidden" asp-for="@Model.Type1" name="type1" />
+    <input type="hidden" asp-for="@Model.Attack" name="attack" />
+    <input type="hidden" asp-for="@Model.Defense" name="defense" />
+    <input type="hidden" asp-for="@Model.Speed" name="speed" />
+    <input type="hidden" asp-for="@Model.ImageUrl" name="imageUrl" />
+</form>
