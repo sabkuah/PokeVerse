@@ -97,6 +97,16 @@ namespace PokeVerse.Pages.Pokedex
         }
 
 
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
+        {
+            var category = await _db.PokedexPokemon.FindAsync(id);
 
+            if (category != null)
+            {
+                _db.PokedexPokemon.Remove(category);
+                await _db.SaveChangesAsync();
+            }
+            return RedirectToPage("Index/pokedex");
+        }
     }
 }

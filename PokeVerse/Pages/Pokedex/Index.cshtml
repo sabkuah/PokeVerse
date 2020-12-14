@@ -29,18 +29,20 @@
         </div>
 
         <div class="col-lg-8 pokemon-container">
-            <form asp-page="/Pokedex/index" method="get">
 
-                @foreach (var item in Model.TrainerPokedex.PokedexPokemons)
-                {
-                    var img = @imageUrl + @item.Pokemon.PokeNumber.ToString("D3") + png;
+
+            @foreach (var item in Model.TrainerPokedex.PokedexPokemons)
+            {
+                var img = @imageUrl + @item.Pokemon.PokeNumber.ToString("D3") + png;
+                <form asp-page="/Pokedex/index" method="post">
+                    
                     <div class="card" style="width: 100%;">
                         <div class="row">
 
                             <div class="col pokemon-image m-1">
                                 <div class="card" style="width: 17em;">
 
-                                    <img src=@img class="card-img-top" alt="@item.Pokemon.Name" >
+                                    <img src=@img class="card-img-top" alt="@item.Pokemon.Name">
                                     <div class="card-body">
                                         <CENTER>
                                             <h5 class="card-title">@item.Pokemon.Name</h5>
@@ -68,9 +70,10 @@
                         </div>
                     </div>
 
-                }
-            </form>
-        </div>
+                    
+                </form>
+            }
+            </div>
 
     </div>
 
