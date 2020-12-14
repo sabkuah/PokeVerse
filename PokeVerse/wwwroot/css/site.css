@@ -91,11 +91,15 @@ body, html {
     background-size: cover;
 }
 
+.pokemon-logo {
+    width: 80% !important;
+}
+
 .parallax {
     /* The image used */
     background-image: url('../images/pokemon-bg.png');
     /* Full height */
-    height: 20%;
+    height: 30%;
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: center;
