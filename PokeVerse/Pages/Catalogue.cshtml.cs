@@ -15,29 +15,19 @@ namespace PokeVerse.Pages
 {
     public class CatalogueModel : PageModel
     {
+        const int ITEMS_PER_PAGE = 6;
+
         private readonly IPokemonVMService _IpokemonVMService;
         public CatalogueModel(IPokemonVMService ipokemonVMService)
         {
             _IpokemonVMService = ipokemonVMService;
         }
-
-        [BindProperty(SupportsGet = true)]
-        public int CurrentPage { get; set; } = 1;
-
-        public int Count { get; set; } = 150;
-        public int PageSize { get; set; } = 6;
-
-        public int TotalPages => (int)Math.Ceiling(decimal.Divide(Count, PageSize));
-
-        public bool ShowPrevious => CurrentPage > 1;
-        public bool ShowNext => CurrentPage < TotalPages;
-
-
+       
         public PokemonIndexVM PokemonIndex = new PokemonIndexVM();
 
-        public async Task OnGet(PokemonIndexVM pokemonIndex)
+        public async Task OnGet(PokemonIndexVM pokemonIndex, int? pageIndex)
         {
-            PokemonIndex = _IpokemonVMService.GetPokemonsVM(pokemonIndex.TypesFilterApplied, CurrentPage, PageSize);
+            PokemonIndex = _IpokemonVMService.GetPokemonsVM(pageIndex ?? 0, ITEMS_PER_PAGE, pokemonIndex.TypesFilterApplied);
 
         }
     }

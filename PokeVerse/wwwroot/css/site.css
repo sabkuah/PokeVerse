@@ -77,3 +77,15 @@ body {
 .login {
     background-color: rgb(249,246,255);
 }
+
+
+/*Catalogue page*/
+.pagination-nav-item {
+    text-align: center;
+    width: 33%;
+    display: inline-block;
+}
+.is-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}

@@ -15,18 +15,21 @@ namespace PokeVerse.Services
     public class PokemonVMService : IPokemonVMService
     {
         private readonly IBaseRepository<Pokemon> _pokemonRepo;
-        private readonly IBaseRepository<Models.Type> _typeRepo;
+        private readonly IBaseRepository<Models.Type> _typeRepo;    
         public PokemonVMService(IBaseRepository<Pokemon> productRepo, IBaseRepository<Models.Type> typeRepo)
         {
             _pokemonRepo = productRepo;
             _typeRepo = typeRepo;
         }
       
-        public PokemonIndexVM GetPokemonsVM(string typeName, int currentPage, int pageSize)
+        public PokemonIndexVM GetPokemonsVM(int pageIndex, int itemsPerPage, string typeName)
         {
             IQueryable<Pokemon> pokemons = _pokemonRepo.GetAll().OrderBy(Pokemon => Pokemon.PokeNumber);
             if (typeName != null && typeName != "NULL")
                 pokemons = pokemons.Where(p => p.Type0 == typeName || p.Type1 == typeName);
+
+            int totalItems = pokemons.Count();
+            pokemons = pokemons.Skip(pageIndex * itemsPerPage).Take(itemsPerPage);
 
             var vm = new PokemonIndexVM()
             {
@@ -40,9 +43,20 @@ namespace PokeVerse.Services
                     Attack = p.Attack,
                     Defense = p.Defense,
                     Speed = p.Speed,
-                }).Skip((currentPage - 1) * pageSize).Take(pageSize).ToList(),
-                Types = GetTypes().ToList()
+                }).ToList(),
+                Types = GetTypes().ToList(),
+
+                PaginationInfo = new PaginationInfoVM()
+                {
+                    PageIndex = pageIndex,
+                    ItemsPerPage = pokemons.Count(),
+                    TotalItems = totalItems,
+                    TotalPages = int.Parse(Math.Ceiling(((decimal)totalItems / itemsPerPage)).ToString())
+                }
             };
+
+            vm.PaginationInfo.Next = (vm.PaginationInfo.PageIndex == vm.PaginationInfo.TotalPages - 1) ? "is-disabled" : "";
+            vm.PaginationInfo.Previous = (vm.PaginationInfo.PageIndex == 0) ? "is-disabled" : "";
             return vm;
         }
 
