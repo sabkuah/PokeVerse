@@ -2,10 +2,7 @@
 @model PokeVerse.Pages.CatalogueModel
 
 
-<body style="background-color: rgb(249,243,202)">
-    @* delete this button later *@
-    <a class="nav-link text-dark" asp-area="" asp-page="/Pokedex/Index">Quick Link to Pokedex</a>
-
+<body>
 
     <div class="container">
         <div class="row">
@@ -22,7 +19,7 @@
 
         <partial name="_pagination" for="@Model.PokemonIndex.PaginationInfo" />
 
-<div class="app-product-items row">
+<div class="app-product-items row justify-content-center">
     @if (Model.PokemonIndex != null && Model.PokemonIndex.Pokemons.Any())
     {
         @foreach (var item in Model.PokemonIndex.Pokemons)
