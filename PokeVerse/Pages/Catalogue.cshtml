@@ -9,7 +9,7 @@
 
     <div class="container">
         <div class="row">
-            <form method="post">
+            <form method="get">
                 <label class="app-product-label" data-title="type">
                     <select asp-for="@Model.PokemonIndex.TypesFilterApplied" asp-items="@Model.PokemonIndex.Types" class="app-product-filter" style="background-color: lightyellow; color:black; height: 2em; width:8em;"></select>
                 </label>
@@ -22,37 +22,21 @@
 
         @*<partial name="_pagination" for="@Model.PokemonIndex.PaginationInfo" />*@
 
-        <div class="app-product-items row">
+<div class="app-product-items row">
+    @if (Model.PokemonIndex != null && Model.PokemonIndex.Pokemons.Any())
+    {
+        @foreach (var item in Model.PokemonIndex.Pokemons)
+        {
+            item.ImageUrl = "./images/" + item.PokeNumber.ToString("D3") + ".png";
 
-            @foreach (var item in Model.PokemonIndex.Pokemons)
-            {
-                item.ImageUrl = "./images/" + item.PokeNumber.ToString("D3") + ".png";
-
-                <form asp-page="/Pokedex/Index" method="post">
-                    <div class="app-product-item col-lg-4 py-1">
-                        <div class="card" style="width: 16rem;">
-                            <img src=@item.ImageUrl class="card-img-top" alt="@item.Name">
-                            <div class="card-body">
-                                <h5 class="card-title" style="text-align: center">@item.PokeNumber</h5>
-                                <h6 class="card-subtitle mb-2 text-muted" style="text-align: center">@item.Name</h6>
-                                <p class="card-text" style="text-align: center">@item.Type0 @item.Type1</p>
-                                @*<a href="#" class="btn btn-block" style="background-color: lightyellow">See Details</a>*@
-                                <input class="app-product-addcart-button" type="submit" value="[ Add To Pokedex ]" asp-page="/Pokedex/Index" />
-                            </div>
-                        </div>
-                    </div>
-                    <input type="hidden" asp-for="@item.Id" name="id" />
-                    <input type="hidden" asp-for="@item.PokeNumber" name="pokeNumber" />
-                    <input type="hidden" asp-for="@item.Name" name="name" />
-                    <input type="hidden" asp-for="@item.Type0" name="type0" />
-                    <input type="hidden" asp-for="@item.Type1" name="type1" />
-                    <input type="hidden" asp-for="@item.Attack" name="attack" />
-                    <input type="hidden" asp-for="@item.Defense" name="defense" />
-                    <input type="hidden" asp-for="@item.Speed" name="speed" />
-                    <input type="hidden" asp-for="@item.ImageUrl" name="imageUrl" />
-                </form>
-            }
-        </div>
+            <partial name="_pokemonPartial" for="@item" />
+        }
+    }
+    else
+    {
+        <p>No Products!</p>
+    }
+</div>
 
 
 </body>

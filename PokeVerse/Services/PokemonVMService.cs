@@ -15,13 +15,13 @@ namespace PokeVerse.Services
     public class PokemonVMService : IPokemonVMService
     {
         private readonly IBaseRepository<Pokemon> _pokemonRepo;
-        private readonly IBaseRepository<Models.Type> _typeRepo;    
+        private readonly IBaseRepository<Models.Type> _typeRepo;
         public PokemonVMService(IBaseRepository<Pokemon> productRepo, IBaseRepository<Models.Type> typeRepo)
         {
             _pokemonRepo = productRepo;
             _typeRepo = typeRepo;
         }
-      
+
         public PokemonIndexVM GetPokemonsVM(int pageIndex, int itemsPerPage, string typeName)
         {
             IQueryable<Pokemon> pokemons = _pokemonRepo.GetAll().OrderBy(Pokemon => Pokemon.PokeNumber);
