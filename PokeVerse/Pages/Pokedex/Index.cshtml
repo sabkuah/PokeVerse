@@ -8,7 +8,7 @@
 @{
     ViewData["Title"] = "TRAINER POKEDEX";
 }
-<h1>@ViewData["Title"]</h1>
+<h1 style="font-family: 'VT323'">@ViewData["Title"]</h1>
 <body>
    
     <div class="row">
@@ -19,7 +19,7 @@
                     <img src="~/images/ash.png" class="trainer-img" />
                 </div>
 
-                <ul class="trainer-info">
+                <ul class="trainer-info" style="font-family: 'VT323'">
                     <h3>ASH KETCHUM</h3>
                     <li>Number of Pokemon:</li>
                     <li>Trainer Level:</li>
@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        <div class="col-lg-8 pokemon-container">
+        <div class="col-lg-8 pokemon-container" style="font-family: 'VT323'">
             <form asp-page="/Pokedex/index" method="get">
 
                 @foreach (var item in Model.TrainerPokedex.PokedexPokemons)
