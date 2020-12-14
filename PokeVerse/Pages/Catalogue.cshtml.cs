@@ -10,12 +10,15 @@ using Microsoft.EntityFrameworkCore;
 using PokeVerse.Data;
 using PokeVerse.Interfaces;
 using PokeVerse.Models;
+using PokeVerse.Services;
 using PokeVerse.ViewModels;
 
 namespace PokeVerse.Pages
 {
     public class CatalogueModel : PageModel
     {
+        const int ITEMS_PER_PAGE = 6;
+        
         private readonly IPokemonVMService _pokemonVMService;
         private readonly PokeVerseDbContext _db;
         private readonly UserManager<IdentityUser> _userManager;
@@ -33,9 +36,9 @@ namespace PokeVerse.Pages
         public PokemonIndexVM PokemonIndex = new PokemonIndexVM();
 
 
-        public async Task OnGet(PokemonIndexVM pokemonIndex)
+        public async Task OnGet(PokemonIndexVM pokemonIndex, int? pageIndex)
         {
-            PokemonIndex = _pokemonVMService.GetPokemonsVM(pokemonIndex.TypesFilterApplied);
+            PokemonIndex = _pokemonVMService.GetPokemonsVM(pageIndex ?? 0, ITEMS_PER_PAGE, pokemonIndex.TypesFilterApplied);
 
             string userId = _userManager.FindByNameAsync(User.Identity.Name).Result.Id;
 
