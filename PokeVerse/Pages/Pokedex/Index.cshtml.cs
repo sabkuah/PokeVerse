@@ -58,6 +58,29 @@ namespace PokeVerse.Pages.Pokedex
 
         }
 
+        public async Task<IActionResult> OnPostDelete(int id)
+        {
+            var pokeId = await _db.Pokemon.FindAsync(id);
+
+            string userId = _userManager.FindByNameAsync(User.Identity.Name).Result.Id;
+            
+
+
+            //Finds Pokedex of Trainer logged in, assign to TrainerPokedex
+            TrainerPokedex = _db.PokeDex
+                .Include(pp => pp.PokedexPokemons)
+                .ThenInclude(p => p.Pokemon)
+                .Where(pp => pp.TrainerId == userId)
+            .FirstOrDefault();
+            //PokedexPokemon p = new PokedexPokemon(TrainerPokedex.Id, pokeId.Id);
+            //var existingPoke = _db.PokedexPokemon.Where(pokeId);
+            TrainerPokedex.PokedexPokemons.Remove();
+            await _db.SaveChangesAsync();
+
+
+            return RedirectToPage("Index");
+        }
+
 
         public void OnPost(PokemonVM testPokemon)
         {

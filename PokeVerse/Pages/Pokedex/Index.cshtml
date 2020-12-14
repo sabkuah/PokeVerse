@@ -29,7 +29,7 @@
         </div>
 
         <div class="col-lg-8 pokemon-container">
-            <form asp-page="/Pokedex/index" method="get">
+            <form asp-page="/Pokedex/index" method="post">
 
                 @foreach (var item in Model.TrainerPokedex.PokedexPokemons)
                 {
@@ -64,6 +64,8 @@
                             <div class="col align-self-center">
                                 <button type="button" class="btn btn-primary py-1">ADD +</button>
                                 <button type="button" class="btn btn-warning py-1">DELETE -</button>
+                                <button asp-page-handler="Delete" asp-route-id="@item.Pokemon.Id" 
+                                   onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm">Delete</button>
                             </div>
                         </div>
                     </div>
