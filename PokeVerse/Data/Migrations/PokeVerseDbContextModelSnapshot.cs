@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PokeVerse.Data;
 
-namespace PokeVerse.Data.PokeMigrations
+namespace PokeVerse.Data.Migrations
 {
     [DbContext(typeof(PokeVerseDbContext))]
     partial class PokeVerseDbContextModelSnapshot : ModelSnapshot

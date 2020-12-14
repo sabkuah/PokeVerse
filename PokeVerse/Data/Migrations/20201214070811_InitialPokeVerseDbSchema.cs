@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace PokeVerse.Data.PokeMigrations
+namespace PokeVerse.Data.Migrations
 {
-    public partial class InitialPokeVerseSchema : Migration
+    public partial class InitialPokeVerseDbSchema : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,18 +12,11 @@ namespace PokeVerse.Data.PokeMigrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TrainerId = table.Column<int>(nullable: false),
-                    PokedexId = table.Column<int>(nullable: true)
+                    TrainerId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PokeDex", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_PokeDex_PokeDex_PokedexId",
-                        column: x => x.PokedexId,
-                        principalTable: "PokeDex",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -44,21 +36,6 @@ namespace PokeVerse.Data.PokeMigrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Pokemon", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Trainer",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserName = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    DateJoined = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Trainer", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -123,11 +100,6 @@ namespace PokeVerse.Data.PokeMigrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_PokeDex_PokedexId",
-                table: "PokeDex",
-                column: "PokedexId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_PokedexPokemon_PokemonId",
                 table: "PokedexPokemon",
                 column: "PokemonId");
@@ -145,9 +117,6 @@ namespace PokeVerse.Data.PokeMigrations
 
             migrationBuilder.DropTable(
                 name: "PokemonTypes");
-
-            migrationBuilder.DropTable(
-                name: "Trainer");
 
             migrationBuilder.DropTable(
                 name: "PokeDex");
