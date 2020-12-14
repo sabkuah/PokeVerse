@@ -89,3 +89,70 @@ body {
     opacity: 0.5;
     pointer-events: none;
 }
+
+/* Pokedex Page*/
+body, html {
+    height: 100%;
+}
+
+.background {
+    background-image: url('../images/pokemon-bg.png');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.pokemon-logo {
+    width: 80% !important;
+}
+
+.parallax {
+    /* The image used */
+    background-image: url('../images/pokemon-bg.png');
+    /* Full height */
+    height: 30%;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.trainer-profile {
+    width: 100%;
+    background-color: #e12e2e;
+    border-radius: 15px;
+    padding-bottom: 10%;
+    box-shadow: 5px 5px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.trainer-img-container {
+    width: 80%;
+    height: fit-content;
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    border-radius: 15px;
+}
+
+.trainer-img {
+    height: 15rem;
+}
+
+.trainer-info {
+    margin: 1%;
+    list-style: none;
+    padding: 0;
+}
+
+.pokemon-container {
+    padding: 3%;
+    background-color: royalblue;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px;
+}

@@ -7,14 +7,18 @@
 
   <ItemGroup>
     <Compile Remove="Data\Migrations\**" />
+    <Compile Remove="Pages\Shared\Components\**" />
     <Content Remove="Data\Migrations\**" />
+    <Content Remove="Pages\Shared\Components\**" />
     <EmbeddedResource Remove="Data\Migrations\**" />
+    <EmbeddedResource Remove="Pages\Shared\Components\**" />
     <None Remove="Data\Migrations\**" />
+    <None Remove="Pages\Shared\Components\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Data\Migrations\20201211001318_IntitialAuthSchema.cs" />
-    <Compile Include="Data\Migrations\20201211001318_IntitialAuthSchema.Designer.cs" />
+    <Compile Include="Data\Migrations\20201211222539_initial.cs" />
+    <Compile Include="Data\Migrations\20201211222539_initial.Designer.cs" />
     <Compile Include="Data\Migrations\AuthDbContextModelSnapshot.cs" />
   </ItemGroup>
 
@@ -35,7 +39,6 @@
 
   <ItemGroup>
     <Folder Include="Data\PokeMigrations\" />
-    <Folder Include="Pages\Shared\Components\" />
   </ItemGroup>
 
 </Project>

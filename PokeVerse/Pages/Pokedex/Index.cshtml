@@ -1,15 +1,80 @@
 ﻿@page
 @model PokeVerse.Pages.Pokedex.IndexModel
 @{
+    var imageUrl = "./images/";
+    var png = ".png";
 }
 
+@{
+    ViewData["Title"] = "TRAINER POKEDEX";
+}
+<h1>@ViewData["Title"]</h1>
+<body>
+   
+    <div class="row">
 
-<form asp-page="/pokedex" method="post">
-    <tbody>
-        <h1>This is the pokedex</h1>
-        @foreach (var item in Model.Pokedexs.PokedexPokemons)
-        {
-            <partial name="_PokedexPartial" for="@item" />
-        }
-    </tbody>
-</form>
+        <div class="col-lg-4">
+            <div class="trainer-profile">
+                <div class="trainer-img-container">
+                    <img src="~/images/ash.png" class="trainer-img" />
+                </div>
+
+                <ul class="trainer-info">
+                    <h3>ASH KETCHUM</h3>
+                    <li>Number of Pokemon:</li>
+                    <li>Trainer Level:</li>
+                    <li>Date joined:</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg-8 pokemon-container">
+            <form asp-page="/Pokedex/index" method="get">
+
+                @foreach (var item in Model.TrainerPokedex.PokedexPokemons)
+                {
+                    var img = @imageUrl + @item.Pokemon.PokeNumber.ToString("D3") + png;
+                    <div class="card" style="width: 100%;">
+                        <div class="row">
+
+                            <div class="col pokemon-image m-1">
+                                <div class="card" style="width: 17em;">
+
+                                    <img src=@img class="card-img-top" alt="@item.Pokemon.Name">
+                                    <div class="card-body">
+                                        <CENTER>
+                                            <h5 class="card-title">@item.Pokemon.Name</h5>
+                                            <p class="card-text">
+                                                @item.Pokemon.Type0 <br />
+                                                @item.Pokemon.Type1
+                                            </p>
+                                        </CENTER>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col align-self-center">
+                                <div>
+                                    <p>SPEED: @item.Pokemon.Speed</p>
+                                    <p>Defense: @item.Pokemon.Defense</p>
+                                    <p>Attack: @item.Pokemon.Attack</p>
+                                </div>
+                            </div>
+                            <div class="col align-self-center">
+                                <button type="button" class="btn btn-primary py-1">ADD +</button>
+                                <button type="button" class="btn btn-warning py-1">DELETE -</button>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </form>
+        </div>
+
+    </div>
+</body>
+
+
+
+
