@@ -97,6 +97,19 @@ namespace PokeVerse.Pages.Pokedex
         }
 
 
+        public async Task<IActionResult> OnPostDeleteAsync(PokedexPokemon pokemon)
+        {
+            
+            //TrainerPokedex.PokedexPokemons.Remove(pokemon);
+           
 
+            if (pokemon != null)
+            {
+                _db.PokedexPokemon.Remove(pokemon);
+                
+            }
+            await _db.SaveChangesAsync();
+            return RedirectToPage();
+        }
     }
 }
