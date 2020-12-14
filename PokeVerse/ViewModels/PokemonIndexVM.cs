@@ -11,5 +11,7 @@ namespace PokeVerse.ViewModels
         public List<PokemonVM> Pokemons { get; set; }
         public List<SelectListItem> Types { get; set; }
         public string TypesFilterApplied { get; set; }
+
+        public PaginationInfoVM PaginationInfo { get; set; }
     }
 }

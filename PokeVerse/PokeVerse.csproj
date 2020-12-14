@@ -6,20 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Data\Migrations\**" />
     <Compile Remove="Pages\Shared\Components\**" />
-    <Content Remove="Data\Migrations\**" />
     <Content Remove="Pages\Shared\Components\**" />
-    <EmbeddedResource Remove="Data\Migrations\**" />
     <EmbeddedResource Remove="Pages\Shared\Components\**" />
-    <None Remove="Data\Migrations\**" />
     <None Remove="Pages\Shared\Components\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Data\Migrations\20201211222539_initial.cs" />
-    <Compile Include="Data\Migrations\20201211222539_initial.Designer.cs" />
-    <Compile Include="Data\Migrations\AuthDbContextModelSnapshot.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +17,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.8" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.10" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.10">
       <PrivateAssets>all</PrivateAssets>
@@ -34,10 +25,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
     <PackageReference Include="PaulMiami.AspNetCore.Mvc.Recaptcha" Version="1.2.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\PokeMigrations\" />
   </ItemGroup>
 
 </Project>
