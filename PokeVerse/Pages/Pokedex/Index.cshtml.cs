@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,7 @@ using PokeVerse.ViewModels;
 
 namespace PokeVerse.Pages.Pokedex
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly PokeVerseDbContext _db;
@@ -33,6 +35,8 @@ namespace PokeVerse.Pages.Pokedex
         public async Task OnGetAsync()
         {
             System.Threading.Thread.Sleep(2000);
+
+
 
             //Finds Id of Trainer logged in
 
@@ -82,6 +86,7 @@ namespace PokeVerse.Pages.Pokedex
                 PokedexPokemon p = new PokedexPokemon(TrainerPokedex.Id, testPokemon.Id);
                 p.Pokemon = new Pokemon(testPokemon.PokeNumber, testPokemon.Name, testPokemon.Type0, testPokemon.Type1, testPokemon.Attack, testPokemon.Defense,  testPokemon.Speed);
                 TrainerPokedex.PokedexPokemons.Add(p);
+                _db.Remove(p.Pokemon);
                 _db.SaveChanges();
 
             }
@@ -97,6 +102,19 @@ namespace PokeVerse.Pages.Pokedex
         }
 
 
+        public async Task<IActionResult> OnPostDeleteAsync(PokedexPokemon pokemon)
+        {
+            
+            //TrainerPokedex.PokedexPokemons.Remove(pokemon);
+           
 
+            if (pokemon != null)
+            {
+                _db.PokedexPokemon.Remove(pokemon);
+                
+            }
+            await _db.SaveChangesAsync();
+            return RedirectToPage();
+        }
     }
 }

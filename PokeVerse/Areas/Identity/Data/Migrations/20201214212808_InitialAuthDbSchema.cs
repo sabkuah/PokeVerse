@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace PokeVerse.Data.Migrations
+namespace PokeVerse.Areas.Identity.Data.Migrations
 {
-    public partial class initial : Migration
+    public partial class InitialAuthDbSchema : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
