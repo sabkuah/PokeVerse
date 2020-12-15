@@ -2,16 +2,22 @@
 
 <form asp-page="/Pokedex/Index" method="post">
     <div class="app-product-item col-lg-4 py-1">
-        <div class="card" style="width: 20rem;">
-            <img src=@Model.ImageUrl class="card-img-top" alt="@Model.Name">
+        <div class="pokemon-card">
+            <div class="img-container">
+                <div class="card-circle">
+                    <img src=@Model.ImageUrl class="pokemon-img" alt="@Model.Name">
+                </div>
+            </div>
+
             <div class="card-body">
-                <h5 class="card-title" style="text-align: center">@Model.PokeNumber</h5>
+                <h5 class="card-title" style="text-align: center">#@Model.PokeNumber</h5>
                 <h6 class="card-subtitle mb-2 text-muted" style="text-align: center">@Model.Name</h6>
                 <p class="card-text" style="text-align: center">@Model.Type0 @Model.Type1</p>
-                <input class="app-product-addcart-button btn-block" style="background-color: lightyellow" type="submit" value=" Add To Pokedex " asp-page="/Pokedex/Index" />
+                <input class="app-product-addcart-button btn-block" style="font-family: 'VT323', monospace; background-color: lightyellow;" type="submit" value=" Add To Pokedex " asp-page="/Pokedex/Index" />
             </div>
         </div>
     </div>
+    <link href="~/css/site.css" rel="stylesheet" />
     <input type="hidden" asp-for="@Model.Id" name="id" />
     <input type="hidden" asp-for="@Model.PokeNumber" name="pokeNumber" />
     <input type="hidden" asp-for="@Model.Name" name="name" />
