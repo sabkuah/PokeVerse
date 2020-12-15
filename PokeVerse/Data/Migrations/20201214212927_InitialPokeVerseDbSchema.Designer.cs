@@ -9,7 +9,7 @@ using PokeVerse.Data;
 namespace PokeVerse.Data.Migrations
 {
     [DbContext(typeof(PokeVerseDbContext))]
-    [Migration("20201214070811_InitialPokeVerseDbSchema")]
+    [Migration("20201214212927_InitialPokeVerseDbSchema")]
     partial class InitialPokeVerseDbSchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
