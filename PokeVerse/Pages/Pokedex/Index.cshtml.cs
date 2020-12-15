@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -63,7 +64,7 @@ namespace PokeVerse.Pages.Pokedex
         }
 
 
-        public void OnPost(PokemonVM testPokemon)
+        public async Task<IActionResult> OnPostAsync(PokemonVM testPokemon)
         {
             //Finds Id of Trainer logged in
 
@@ -85,17 +86,17 @@ namespace PokeVerse.Pages.Pokedex
             {
                 PokedexPokemon p = new PokedexPokemon(TrainerPokedex.Id, testPokemon.Id);
                 TrainerPokedex.PokedexPokemons.Add(p);
-                _db.SaveChanges();
+                await _db.SaveChangesAsync();
                 p.Pokemon = new Pokemon(testPokemon.PokeNumber, testPokemon.Name, testPokemon.Type0, testPokemon.Type1, testPokemon.Attack, testPokemon.Defense, testPokemon.Speed);
-
+                //Response.Redirect("Pokedex/Index", false);
             }
             catch
             {
                 Console.Write("Pokemon has already been added");
 
             }
-
-            RedirectToPage("/Pokedex/index");
+            
+            return RedirectToPage("/Pokedex/index");
 
 
         }
@@ -107,11 +108,10 @@ namespace PokeVerse.Pages.Pokedex
             //TrainerPokedex.PokedexPokemons.Remove(pokemon);
            
 
-            if (pokemon != null)
-            {
+           
                 _db.PokedexPokemon.Remove(pokemon);
                 
-            }
+            
             await _db.SaveChangesAsync();
             return RedirectToPage();
         }
