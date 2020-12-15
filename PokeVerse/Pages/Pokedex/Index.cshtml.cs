@@ -85,8 +85,8 @@ namespace PokeVerse.Pages.Pokedex
             {
                 PokedexPokemon p = new PokedexPokemon(TrainerPokedex.Id, testPokemon.Id);
                 p.Pokemon = new Pokemon(testPokemon.PokeNumber, testPokemon.Name, testPokemon.Type0, testPokemon.Type1, testPokemon.Attack, testPokemon.Defense,  testPokemon.Speed);
+                _db.Pokemon.Remove(p.Pokemon);
                 TrainerPokedex.PokedexPokemons.Add(p);
-                _db.Remove(p.Pokemon);
                 _db.SaveChanges();
 
             }
