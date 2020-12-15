@@ -90,6 +90,45 @@ body {
     pointer-events: none;
 }
 
+.pokemon-card {
+    background-color: #eee;
+    border-radius: 20px;
+    box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    min-width: 15rem;
+    
+}
+
+.img-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.card-circle {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    text-align: center;
+}
+
+.pokemon-img {
+    margin-top: 20px;
+    max-width: 90%;
+}
+
+.card-title {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    font-size: 0.8em;
+    padding: 5px 10px;
+}
+
+
+
 /* Pokedex Page*/
 body, html {
     height: 100%;
