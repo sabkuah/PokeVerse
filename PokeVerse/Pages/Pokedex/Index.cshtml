@@ -5,12 +5,12 @@
     var png = ".png";
 }
 
-@{
-    ViewData["Title"] = "TRAINER POKEDEX";
-}
-<h1>@ViewData["Title"]</h1>
 <body>
-   
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+    <h1 style="font-family: 'VT323', monospace;">Trainer Pokedex</h1>
+
     <div class="row">
 
         <div class="col-lg-4">
@@ -31,52 +31,60 @@
         <div class="col-lg-8 pokemon-container">
 
 
-            @foreach (var item in Model.TrainerPokedex.PokedexPokemons)
+            @if (Model.TrainerPokedex.PokedexPokemons.Any())
             {
-                var img = @imageUrl + @item.Pokemon.PokeNumber.ToString("D3") + png;
-                <form method="post">
-                    
-                    <div class="card" style="width: 100%;">
-                        <div class="row">
 
-                            <div class="col pokemon-image m-1">
-                                <div class="card" style="width: 17em;">
+                foreach (var item in Model.TrainerPokedex.PokedexPokemons)
+                {
+                    var img = @imageUrl + @item.Pokemon.PokeNumber.ToString("D3") + png;
+                    <form method="post">
 
-                                    <img src=@img class="card-img-top" alt="@item.Pokemon.Name">
-                                    <div class="card-body">
-                                        <CENTER>
-                                            <h5 class="card-title">@item.Pokemon.Name</h5>
-                                            <p class="card-text">
-                                                @item.Pokemon.Type0 <br />
-                                                @item.Pokemon.Type1
-                                            </p>
-                                        </CENTER>
+                        <div class="card" style="width: 100%;">
+                            <div class="row">
 
+                                <div class="col pokemon-image m-1">
+                                    <div class="card" style="width: 17em;">
+
+                                        <img src=@img class="card-img-top" alt="@item.Pokemon.Name">
+                                        <div class="card-body">
+                                            <CENTER>
+                                                <h5 class="card-title">@item.Pokemon.Name</h5>
+                                                <p class="card-text">
+                                                    @item.Pokemon.Type0 <br />
+                                                    @item.Pokemon.Type1
+                                                </p>
+                                            </CENTER>
+
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="col align-self-center">
-                                <div>
-                                    <p>SPEED: @item.Pokemon.Speed</p>
-                                    <p>Defense: @item.Pokemon.Defense</p>
-                                    <p>Attack: @item.Pokemon.Attack</p>
+                                <div class="col align-self-center">
+                                    <div>
+                                        <p>SPEED: @item.Pokemon.Speed</p>
+                                        <p>Defense: @item.Pokemon.Defense</p>
+                                        <p>Attack: @item.Pokemon.Attack</p>
+                                    </div>
+                                </div>
+                                <div class="col align-self-center">
+
+                                    <button type="submit" asp-page-handler="delete" class="btn btn-warning py-1">DELETE -</button>
+                                    <input type="hidden" asp-for="@item.Pokedex.Id" name="pokedexId" />
+                                    <input type="hidden" asp-for="@item.Pokemon.Id" name="pokemonId" />
+
                                 </div>
                             </div>
-                            <div class="col align-self-center">
-                                
-                                <button type="submit" asp-page-handler="delete" class="btn btn-warning py-1">DELETE -</button>
-                                <input type="hidden" asp-for="@item.Pokedex.Id" name="pokedexId" />
-                                <input type="hidden" asp-for="@item.Pokemon.Id" name="pokemonId" />
-                                
-                            </div>
                         </div>
-                    </div>
 
-                    
-                </form>
+
+                    </form>
+                }
             }
-            </div>
+            else
+            {
+                <p style="font-family: 'VT323', monospace; color: white;"> There are no pokemon in your pokedex, go out and catch some...</p>
+            }
+        </div>
 
     </div>
 </body>
