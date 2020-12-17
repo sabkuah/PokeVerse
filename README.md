@@ -6,11 +6,11 @@ This application is designed for users ("trainers") to be able to store their po
 
 ## Installation Instructions
 
-Clone this repo locally. Copy the appsettingsTEMPLATE.json to a file called appsettings.json. Update your connection string to point to your local database. Register your site with google here [here](https://https://www.google.com/recaptcha/) to add authentication. Add your site and secret keys to your appsettings.json. Build the App. Run`Add-Migration InitialPokeVerseSchema -Context PokeVerseDbContext -OutputDir "Data/PokeMigrations"` and then run `Update-Database`. Then run `Add-Migration InitialAuthSchema -Context AuthDbContext -OutputDir "Areas/Identity/Data/Migrations"`. Launch.  
+Clone this repo locally. Copy the appsettingsTEMPLATE.json to a file called appsettings.json. Update your connection string to point to your local database. Register your site with google here [here](https://https://www.google.com/recaptcha/) to add authentication and sign up for sendgrid [here](https://signup.sendgrid.com). Add your site and secret keys from Google and your SENDGRID_KEY, SENDGRID_EMAIl, and SENDGRID_NAME to your appsettings.json. Build the App. Run`Add-Migration InitialPokeVerseSchema -Context PokeVerseDbContext -OutputDir "Data/PokeMigrations"` and then run `Update-Database`. Then run `Add-Migration InitialAuthSchema -Context AuthDbContext -OutputDir "Areas/Identity/Data/Migrations"`. Launch.  
 
 ### Trouble Shooting
 
-If the build fails, ensure that you have the PaulMiami Recaptcha V2 and bootstrap packages installed. 
+If the build fails, ensure that you have the PaulMiami Recaptcha V2, SendGrid and bootstrap packages installed. 
 
 ## Functional Requirements
 

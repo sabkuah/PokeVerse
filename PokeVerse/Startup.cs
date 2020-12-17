@@ -16,6 +16,9 @@ using System.Threading.Tasks;
 using PokeVerse.Interfaces;
 using PokeVerse.Services;
 using PokeVerse.Data.Migrations;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 
 namespace PokeVerse
 {
@@ -46,7 +49,10 @@ namespace PokeVerse
             })
                 .AddEntityFrameworkStores<AuthDbContext>();
 
-            
+            // Add email authentication
+            services.AddTransient<IEmailSender, EmailSender>();
+            services.Configure<EmailSenderOptions>(Configuration);
+
 
             services.AddRecaptcha(new RecaptchaOptions
             {

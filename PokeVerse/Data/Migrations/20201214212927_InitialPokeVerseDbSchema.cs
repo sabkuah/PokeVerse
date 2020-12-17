@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace PokeVerse.Data.PokeMigrations
+namespace PokeVerse.Data.Migrations
 {
-    public partial class initial : Migration
+    public partial class InitialPokeVerseDbSchema : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

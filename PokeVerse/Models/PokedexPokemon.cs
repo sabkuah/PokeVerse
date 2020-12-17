@@ -9,13 +9,13 @@ namespace PokeVerse.Models
 {
     public class PokedexPokemon
     {
-        [Key,Column(Order=0)]
+        [Key, Column(Order = 0)]
         public int PokedexId { get; set; }
 
         [Key, Column(Order = 1)]
         public int PokemonId { get; set; }
 
-
+        public PokedexPokemon() {}
         public virtual Pokedex Pokedex { get; set; }
         public virtual Pokemon Pokemon { get; set; }
 

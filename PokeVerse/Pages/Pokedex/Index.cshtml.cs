@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +15,7 @@ using PokeVerse.ViewModels;
 
 namespace PokeVerse.Pages.Pokedex
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly PokeVerseDbContext _db;
@@ -33,6 +36,8 @@ namespace PokeVerse.Pages.Pokedex
         public async Task OnGetAsync()
         {
             System.Threading.Thread.Sleep(2000);
+
+
 
             //Finds Id of Trainer logged in
 
@@ -59,7 +64,7 @@ namespace PokeVerse.Pages.Pokedex
         }
 
 
-        public void OnPost(PokemonVM testPokemon)
+        public async Task<IActionResult> OnPostAsync(PokemonVM testPokemon)
         {
             //Finds Id of Trainer logged in
 
@@ -80,23 +85,35 @@ namespace PokeVerse.Pages.Pokedex
             try
             {
                 PokedexPokemon p = new PokedexPokemon(TrainerPokedex.Id, testPokemon.Id);
-                p.Pokemon = new Pokemon(testPokemon.PokeNumber, testPokemon.Name, testPokemon.Type0, testPokemon.Type1, testPokemon.Attack, testPokemon.Defense,  testPokemon.Speed);
                 TrainerPokedex.PokedexPokemons.Add(p);
-                _db.SaveChanges();
-
+                await _db.SaveChangesAsync();
+                p.Pokemon = new Pokemon(testPokemon.PokeNumber, testPokemon.Name, testPokemon.Type0, testPokemon.Type1, testPokemon.Attack, testPokemon.Defense, testPokemon.Speed);
+                //Response.Redirect("Pokedex/Index", false);
             }
             catch
             {
                 Console.Write("Pokemon has already been added");
 
             }
-
-            RedirectToPage("/Pokedex/index");
+            
+            return RedirectToPage("/Pokedex/index");
 
 
         }
 
 
+        public async Task<IActionResult> OnPostDeleteAsync(PokedexPokemon pokemon)
+        {
+            
+            //TrainerPokedex.PokedexPokemons.Remove(pokemon);
+           
 
+           
+                _db.PokedexPokemon.Remove(pokemon);
+                
+            
+            await _db.SaveChangesAsync();
+            return RedirectToPage();
+        }
     }
 }
