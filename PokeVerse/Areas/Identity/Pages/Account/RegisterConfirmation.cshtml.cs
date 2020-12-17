@@ -16,13 +16,12 @@ namespace PokeVerse.Areas.Identity.Pages.Account
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IEmailSender _sender;
-        private readonly PokeVerseDbContext _db;
+        
 
-        public RegisterConfirmationModel(UserManager<IdentityUser> userManager, IEmailSender sender, PokeVerseDbContext db)
+        public RegisterConfirmationModel(UserManager<IdentityUser> userManager, IEmailSender sender)
         {
             _userManager = userManager;
             _sender = sender;
-            _db = db;
         }
 
         public string Email { get; set; }
@@ -47,21 +46,18 @@ namespace PokeVerse.Areas.Identity.Pages.Account
             }
 
             Email = email;
+            
             // Once you add a real email sender, you should remove this code that lets you confirm the account
             DisplayConfirmAccountLink = false;
             if (DisplayConfirmAccountLink)
             {
-                Pokedex pokedex;
-                var userId = await _userManager.GetUserIdAsync(user);
-                pokedex = new Pokedex(userId);
-                _db.PokeDex.Add(pokedex);
-                _db.SaveChanges();
+               
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                 EmailConfirmationUrl = Url.Page(
                     "/Account/ConfirmEmail",
                     pageHandler: null,
-                    values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
+                    values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                     protocol: Request.Scheme);
             }
 
