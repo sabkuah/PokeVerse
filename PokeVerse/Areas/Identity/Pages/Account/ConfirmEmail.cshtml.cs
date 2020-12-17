@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using PokeVerse.Data;
+using PokeVerse.Models;
 
 namespace PokeVerse.Areas.Identity.Pages.Account
 {
@@ -15,10 +17,12 @@ namespace PokeVerse.Areas.Identity.Pages.Account
     public class ConfirmEmailModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly PokeVerseDbContext _db;
 
-        public ConfirmEmailModel(UserManager<IdentityUser> userManager)
+        public ConfirmEmailModel(UserManager<IdentityUser> userManager, PokeVerseDbContext db)
         {
             _userManager = userManager;
+            _db = db;
         }
 
         [TempData]
@@ -40,6 +44,10 @@ namespace PokeVerse.Areas.Identity.Pages.Account
             code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
             var result = await _userManager.ConfirmEmailAsync(user, code);
             StatusMessage = result.Succeeded ? "Thank you for confirming your email." : "Error confirming your email.";
+            Pokedex pokedex;
+            pokedex = new Pokedex(userId);
+            _db.PokeDex.Add(pokedex);
+            _db.SaveChanges();
             return Page();
         }
     }

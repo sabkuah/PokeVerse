@@ -30,7 +30,7 @@ namespace PokeVerse.Pages.Pokedex
         public Models.Pokedex TrainerPokedex { get; set; }
 
         public PokedexPokemon PokedexPokemon { get; set; }
-        
+
 
 
         public async Task OnGetAsync()
@@ -59,10 +59,9 @@ namespace PokeVerse.Pages.Pokedex
 
             //_db.PokedexPokemon.Update(PokedexPokemon);
             //_db.SaveChanges();
-                
+
 
         }
-
 
         public async Task<IActionResult> OnPostAsync(PokemonVM testPokemon)
         {
