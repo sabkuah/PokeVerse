@@ -1,5 +1,11 @@
 # The PokeVerse App v1
 
+A group project built using Razor-pages, C#/ASP .NET and a MSSQL database. 
+
+<img src="pokeverse.gif" width="800px"/>
+<img src="pokeverse1.png" width="800px"/><img src="pokeverse2.png" width="800px"/><img src="pokeverse3.png" width="800px"/><img src="pokeverse4.png" width="800px"/>
+
+
 ## App Description
 
 This application is designed for users ("trainers") to be able to store their pokemon collections via a searchable and browsable database. In Version 1.0 we include the original 150 pokemon and the ability to save your collection and share it via social media. In later versions, we hope to implement trainer "levels" and a trading and game aspect
